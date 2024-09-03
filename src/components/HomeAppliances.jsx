@@ -1,201 +1,305 @@
 import { v4 as uuidv4 } from 'uuid';
-import React, {useState} from 'react';
-import girls2 from '../assets/img/girls2.jpg';
-import girls1 from '../assets/img/girls1.jpg';
-import earings4 from '../assets/img/earings4.jpg';
-import earings3 from '../assets/img/earings3.jpg';
-import earings2 from '../assets/img/earings2.jpg';
-import necklace1 from '../assets/img/necklace1.jpg';
-import necklance3 from '../assets/img/necklance3.jpg';
-import necklace2 from '../assets/img/necklace2.jpg';
-import rings1 from '../assets/img/rings1.jpg';
-import ring2 from '../assets/img/ring2.jpg';
-import ring4 from '../assets/img/ring4.jpg';
-import ring7 from '../assets/img/ring7.jpg';
-import ring6 from '../assets/img/ring6.jpg';
-import ring5 from '../assets/img/ring5.jpg';
-import earings5 from '../assets/img/earings5.jpg';
-
+import React, {useState, useContext} from 'react';
+import cover4 from '../assets/img/cover4.jpg'
+import p1 from '../assets/img/appliance1.jpg';
+import p2 from '../assets/img/p2.jpg';
+import p3 from '../assets/img/p3.jpg';
+import p4 from '../assets/img/p4.jpg';
+import p5 from '../assets/img/p5.jpg';
+import p6 from '../assets/img/p6.jpg';
+import p7 from '../assets/img/p7.jpg';
+import p8 from '../assets/img/p8.jpg';
+import p9 from '../assets/img/p9.jpg';
+import p10 from '../assets/img/p10.jpg';
+import p11 from '../assets/img/p11.jpg';
+import p12 from '../assets/img/p12.jpg';
+import p13 from '../assets/img/p13.jpg';
+import p14 from '../assets/img/p14.jpg';
+import p15 from '../assets/img/p15.jpg';
+import { FaCartPlus, FaEye } from 'react-icons/fa';
+import { CartContext } from '../contexts/CartContext';
 export const Homeproducts = [
   {
     id: uuidv4(),
-    image: girls2,
-    category: 'Accessories',
-    subcategory: 'Watches',
+    image: p1,
+    category: 'Home Appliances',
+    subcategory: 'Kitchen Appliances',
     rating: "4.5",
-    title: 'Elegant Golden Pearl Watch',
+    title: 'Stainless Steel Blender',
     price: 234.00,
-    description: 'A sophisticated golden pearl watch that adds a touch of elegance to any outfit.'
+    description: 'A powerful stainless steel blender for smoothies, soups, and sauces.'
   },
   {
     id: uuidv4(),
-    image: girls1,
-    category: 'Accessories',
-    subcategory: 'Watches',
+    image: p2,
+    category: 'Home Appliances',
+    subcategory: 'Kitchen Appliances',
     rating: "5.0",
-    title: 'Floral Enamel Watch',
+    title: 'Digital Air Fryer',
     price: 345.00,
-    description: 'A stylish floral enamel watch perfect for making a statement on special occasions.'
+    description: 'A stylish digital air fryer perfect for healthy, oil-free cooking.'
   },
   {
     id: uuidv4(),
-    image: earings4,
-    category: 'Accessories',
-    subcategory: 'Earrings',
+    image: p3,
+    category: 'Home Appliances',
+    subcategory: 'Kitchen Appliances',
     rating: "4.0",
-    title: 'Gold Hoop Earrings',
+    title: 'Compact Microwave Oven',
     price: 123.00,
-    description: 'Elegant gold hoop earrings.'
+    description: 'An elegant and compact microwave oven for quick meals.'
   },
   {
     id: uuidv4(),
-    image: earings3,
-    category: 'Accessories',
-    subcategory: 'Earrings',
+    image: p4,
+    category: 'Home Appliances',
+    subcategory: 'Laundry Appliances',
     rating: "4.7",
-    title: 'Silver Stud Earrings',
+    title: 'Front-Load Washing Machine',
     price: 89.00,
-    description: 'Classic silver stud earrings.'
+    description: 'A high-efficiency front-load washing machine with multiple wash cycles.'
   },
   {
     id: uuidv4(),
-    image: earings2,
-    category: 'Accessories',
-    subcategory: 'Earrings',
+    image: p5,
+    category: 'Home Appliances',
+    subcategory: 'Laundry Appliances',
     rating: "4.3",
-    title: 'Pearl Drop Earrings',
+    title: 'Steam Iron',
     price: 200.00,
-    description: 'Elegant pearl drop earrings.'
+    description: 'A powerful steam iron that smooths out wrinkles effortlessly.'
   },
   {
     id: uuidv4(),
-    image: necklace1,
-    category: 'Accessories',
-    subcategory: 'Necklaces',
+    image: p6,
+    category: 'Home Appliances',
+    subcategory: 'Kitchen Appliances',
     rating: "5.0",
-    title: 'Gold Chain Necklace',
+    title: 'Automatic Bread Maker',
     price: 345.00,
-    description: 'Stylish gold chain necklace.'
-  },
+    description: 'A compact automatic bread maker that kneads, rises, and bakes bread with customizable settings.'
+},
   {
     id: uuidv4(),
-    image: necklance3,
-    category: 'Accessories',
-    subcategory: 'Necklaces',
+    image: p7,
+    category: 'Home Appliances',
+    subcategory: 'Kitchen Appliances',
     rating: "4.5",
-    title: 'Silver Pendant Necklace',
+    title: 'Electric Kettle',
     price: 150.00,
-    description: 'Elegant silver pendant necklace.'
+    description: 'An elegant electric kettle for boiling water quickly and safely.'
   },
   {
     id: uuidv4(),
-    image: necklace2,
-    category: 'Accessories',
-    subcategory: 'Necklaces',
+    image: p8,
+    category: 'Home Appliances',
+    subcategory: 'Kitchen Appliances',
     rating: "4.0",
-    title: 'Diamond Necklace',
+    title: 'Automatic Coffee Maker',
     price: 500.00,
-    description: 'Luxurious diamond necklace.'
+    description: 'A luxurious automatic coffee maker for the perfect brew every time.'
   },
   {
     id: uuidv4(),
-    image: rings1,
-    category: 'Accessories',
-    subcategory: 'Rings',
+    image: p9,
+    category: 'Home Appliances',
+    subcategory: 'Home Cleaning',
     rating: "4.8",
-    title: 'Gold Engagement Ring',
+    title: 'Robotic Vacuum Cleaner',
     price: 789.00,
-    description: 'Beautiful gold engagement ring.'
+    description: 'A smart robotic vacuum cleaner that keeps your floors spotless.'
   },
   {
     id: uuidv4(),
-    image: ring2,
-    category: 'Accessories',
-    subcategory: 'Rings',
+    image: p10,
+    category: 'Home Appliances',
+    subcategory: 'Home Cleaning',
     rating: "4.3",
-    title: 'Silver Wedding Band',
+    title: 'Cordless Handheld Vacuum',
     price: 300.00,
-    description: 'Classic silver wedding band.'
+    description: 'A classic cordless handheld vacuum for quick clean-ups.'
   },
   {
     id: uuidv4(),
-    image: ring4,
-    category: 'Accessories',
-    subcategory: 'Rings',
+    image: p11,
+    category: 'Home Appliances',
+    subcategory: 'Home Cleaning',
     rating: "5.0",
-    title: 'Rose Gold Ring',
+    title: 'Steam Mop',
     price: 450.00,
-    description: 'Stylish rose gold ring.'
+    description: 'A stylish steam mop that sanitizes and cleans floors effortlessly.'
   },
   {
     id: uuidv4(),
-    image: ring7,
-    category: 'Accessories',
-    subcategory: 'Rings',
+    image: p12,
+    category: 'Home Appliances',
+    subcategory: 'Home Cleaning',
     rating: "4.6",
-    title: 'Vintage Ring',
+    title: 'Carpet Cleaner',
     price: 675.00,
-    description: 'Elegant vintage ring.'
+    description: 'An elegant carpet cleaner that removes stains and odors efficiently.'
   },
   {
     id: uuidv4(),
-    image: ring6,
-    category: 'Accessories',
-    subcategory: 'Rings',
+    image: p13,
+    category: 'Home Appliances',
+    subcategory: 'Kitchen Appliances',
     rating: "4.2",
-    title: 'Platinum Ring',
+    title: 'Induction Cooktop',
     price: 900.00,
-    description: 'Luxury platinum ring.'
+    description: 'A luxury induction cooktop with precise temperature control.'
   },
   {
     id: uuidv4(),
-    image: ring5,
-    category: 'Accessories',
-    subcategory: 'Rings',
+    image: p14,
+    category: 'Home Appliances',
+    subcategory: 'Kitchen Appliances',
     rating: "4.9",
-    title: 'Diamond Ring',
+    title: 'Convection Oven',
     price: 1200.00,
-    description: 'Exquisite diamond ring.'
+    description: 'An exquisite convection oven for perfect baking and roasting.'
   },
   {
     id: uuidv4(),
-    image: earings5,
-    category: 'Accessories',
-    subcategory: 'Earrings',
+    image: p15,
+    category: 'Home Appliances',
+    subcategory: 'Kitchen Appliances',
     rating: "4.0",
-    title: 'Gold Drop Earrings',
+    title: 'Slow Cooker',
     price: 234.00,
-    description: 'Elegant gold drop earrings.'
+    description: 'An elegant slow cooker that brings out the best flavors in your meals.'
   }
 ];
 
+
+export const TopSellingProducts = Homeproducts.filter(product => product.rating >= 4.5);
+
 const HomeAppliances = () => {
-  const [products, setProducts] = useState(Homeproducts);
+  const [products] = useState(Homeproducts);
+  const [topSelling] = useState(TopSellingProducts);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const { addToCart } = useContext(CartContext); // Add to cart context
+
+  const handleModalOpen = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Accessories</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {products.length > 0 ? (
-          products.map(product => (
-            <div key={product.id} className="border p-4 rounded-lg shadow-lg">
+      {/* Main Banner Section */}
+      <div className="bg-cover bg-center h-64 mb-8" style={{ backgroundImage: `url(${cover4})` }}>
+        <div className="flex justify-center items-center h-full bg-black bg-opacity-50">
+          <h1 className="text-4xl text-white font-bold">Women's Fashion</h1>
+        </div>
+      </div>
+      <h2 className="text-xl font-bold mb-4">Top Selling Products</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+        {topSelling.length > 0 ? (
+          topSelling.map(product => (
+            <div
+              key={product.id}
+              className="relative border p-4 h-auto w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+            >
               <img
                 src={product.image}
                 alt={product.title}
-                className="w-full h-48 object-cover rounded-md mb-2"
+                className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
-              <h2 className="text-lg font-semibold mb-1">{product.title}</h2>
-              <p className="text-sm mb-2">{product.description}</p>
-              <p className="text-xl font-bold">${product.price.toFixed(2)}</p>
+              <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
+              <p className="text-xs mb-2">{product.description}</p>
+              <p className="text-base font-bold">${product.price.toFixed(2)}</p>
+
+              {/* Hover effects */}
+              <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+                <button
+                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                  onClick={() => addToCart(product)} // Add to Cart
+                >
+                  <FaCartPlus />
+                </button>
+                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                  <FaEye />
+                </button>
+              </div>
             </div>
           ))
         ) : (
-          <p>No accessories found.</p>
+          <p>No top-selling products found.</p>
         )}
       </div>
+      <h1 className="text-2xl font-bold mb-4">Women Fashion</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-8">
+        {products.length > 0 ? (
+          products.map(product => (
+            <div
+              key={product.id}
+              className="relative border p-4 h-auto w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+            >
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
+              />
+              <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
+              <p className="text-base font-bold">${product.price.toFixed(2)}</p>
+
+              {/* Hover effects */}
+              <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+                <button
+                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                  onClick={() => addToCart(product)} // Add to Cart
+                >
+                  <FaCartPlus />
+                </button>
+                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                  <FaEye />
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No products found.</p>
+        )}
+      </div>
+      {/* Modal for product details */}
+      {isModalOpen && selectedProduct && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
+          <div className="bg-violet-200 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
+            <button
+              onClick={handleModalClose}
+              className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
+            >
+              <span className="text-3xl">&times;</span>
+            </button>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4">{selectedProduct.title}</h2>
+            <img className="w-26 h-36 sm:h-48 md:h-56 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
+            <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
+            <div className="flex flex-col sm:flex-row justify-between items-center">
+              <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
+              <h3 className="text-sm font-semibold">{selectedProduct.rating}⭐</h3>
+            </div>
+            <button
+              onClick={() => {
+                addToCart(selectedProduct);
+                handleModalClose();
+              }}
+              className="mt-4 bg-violet-300 hover:bg-violet-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600 "
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
 
 export default HomeAppliances;
-

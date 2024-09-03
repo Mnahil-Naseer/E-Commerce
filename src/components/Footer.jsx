@@ -16,14 +16,10 @@ const Footer = () => {
   };
 
   return (
-    <footer id="Footer" className="relative py-9 mt-14 bg-gray-600 text-black">
-      <div className="absolute inset-0">
-        <img src={hero} alt="Background" className="w-full h-full object-cover opacity-40" />
-        <div className="absolute inset-0 opacity-40"></div>
-      </div>
+    <footer id="Footer" className="relative py-9 mt-14 bg-[#3a92a4] text-white">
       <div className="relative container mx-auto flex flex-wrap justify-between">
         <div className="w-full md:w-1/4 mt-16 md:mb-0">
-          <img src={bg} alt="Logo" className="h-20 mb-4 rounded-full"/>
+          <h1>E-Mart</h1>
           <h4 className="text-lg">
             <span className="font-bold flex"><p className="text-xl mr-7">🗺</p>  Shop 009A, Level 4, Block A, Demo Park, Ottawa</span>
           </h4><br/>
