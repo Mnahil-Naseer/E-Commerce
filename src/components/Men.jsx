@@ -15,7 +15,7 @@ import men12 from '../assets/img/men12.jpg';
 import men13 from '../assets/img/men13.jpg';
 import men15 from '../assets/img/men15.jpg';
 import men14 from '../assets/img/men14.jpg';
-import { FaCartPlus, FaEye } from 'react-icons/fa';
+import { FaCartPlus, FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { CartContext } from '../contexts/CartContext';
 export const Menproducts = [
   {
@@ -176,8 +176,15 @@ export const Menproducts = [
     const [topSelling] = useState(TopSellingProducts);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const { addToCart } = useContext(CartContext); // Add to cart context
+    const { addToCart } = useContext(CartContext); 
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const handleNextSlide = () => {
+      setCurrentSlide((prev) => (prev + 1) % topSelling.length);
+    };
   
+    const handlePrevSlide = () => {
+      setCurrentSlide((prev) => (prev - 1 + topSelling.length) % topSelling.length);
+    };
     const handleModalOpen = (product) => {
       setSelectedProduct(product);
       setIsModalOpen(true);
@@ -196,13 +203,33 @@ export const Menproducts = [
             <h1 className="text-4xl text-white font-bold">Women's Fashion</h1>
           </div>
         </div>
-        <h2 className="text-xl font-bold mb-4">Top Selling Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
-          {topSelling.length > 0 ? (
-            topSelling.map(product => (
+        <h2 className="text-2xl font-bold mb-10">Top Selling Products</h2>
+      
+      {/* Carousel */}
+      <div className="relative">
+        <button
+          onClick={handlePrevSlide}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+        >
+          <FaChevronLeft />
+        </button>
+        
+        <button
+          onClick={handleNextSlide}
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+        >
+          <FaChevronRight />
+        </button>
+        
+        <div className="overflow-hidden">
+          <div
+            className="flex gap-6 transition-transform duration-300 ease-in-out"
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          >
+            {topSelling.map(product => (
               <div
                 key={product.id}
-                className="relative border p-4 h-auto w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+                className="relative border p-4 h-auto w-56 flex-shrink-0 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out"
               >
                 <img
                   src={product.image}
@@ -210,27 +237,25 @@ export const Menproducts = [
                   className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
                 />
                 <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
-                <p className="text-xs mb-2">{product.description}</p>
                 <p className="text-base font-bold">${product.price.toFixed(2)}</p>
-  
+
                 {/* Hover effects */}
                 <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-                  <button
-                    className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                    onClick={() => addToCart(product)} // Add to Cart
-                  >
-                    <FaCartPlus />
-                  </button>
-                  <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                    <FaEye />
-                  </button>
-                </div>
+                <button
+                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                  onClick={() => addToCart(product)} // Add to Cart
+                >
+                  <FaCartPlus />
+                </button>
+                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                  <FaEye />
+                </button>
               </div>
-            ))
-          ) : (
-            <p>No top-selling products found.</p>
-          )}
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
         <h1 className="text-2xl font-bold mb-4">Women Fashion</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-8">
           {products.length > 0 ? (
