@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import React,{useState,useContext} from 'react';
-import { FaCartPlus, FaEye } from 'react-icons/fa';
+import { FaCartPlus, FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import cover5 from '../assets/img/cover5.jpg'
 import d1 from '../assets/img/d1.jpg';
 import d2 from '../assets/img/d2.jpg';
@@ -121,7 +121,7 @@ export const Decorationproducts = [
   },
   {
     id: uuidv4(),
-    image: d12,
+    image: d11,
     category: 'Decorative Accessories',
     subcategory: 'Wall Art',
     rating: "4.6",
@@ -177,6 +177,7 @@ export const TopSellingProducts = Decorationproducts.filter(product => product.r
 const Decoration = () => {
   const [products] = useState(Decorationproducts);
   const [topSelling] = useState(TopSellingProducts);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { addToCart } = useContext(CartContext); // Add to cart context
@@ -191,33 +192,61 @@ const Decoration = () => {
     setSelectedProduct(null);
   };
 
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % topSelling.length);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + topSelling.length) % topSelling.length);
+  };
+
   return (
     <div className="p-4">
       {/* Main Banner Section */}
       <div className="bg-cover bg-center h-64 mb-8" style={{ backgroundImage: `url(${cover5})` }}>
         <div className="flex justify-center items-center h-full bg-black bg-opacity-50">
-          <h1 className="text-4xl text-white font-bold">Women's Fashion</h1>
+          <h1 className="text-4xl text-white font-bold">Decorations</h1>
         </div>
       </div>
-      <h2 className="text-xl font-bold mb-4">Top Selling Products</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
-        {topSelling.length > 0 ? (
-          topSelling.map(product => (
-            <div
-              key={product.id}
-              className="relative border p-4 h-auto w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
-            >
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
-              />
-              <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
-              <p className="text-xs mb-2">{product.description}</p>
-              <p className="text-base font-bold">${product.price.toFixed(2)}</p>
+      
+      <h2 className="text-2xl font-bold mb-10">Top Selling Products</h2>
+      
+      {/* Carousel */}
+      <div className="relative">
+        <button
+          onClick={handlePrevSlide}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+        >
+          <FaChevronLeft />
+        </button>
+        
+        <button
+          onClick={handleNextSlide}
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+        >
+          <FaChevronRight />
+        </button>
+        
+        <div className="overflow-hidden">
+          <div
+            className="flex gap-6 transition-transform duration-300 ease-in-out"
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          >
+            {topSelling.map(product => (
+              <div
+                key={product.id}
+                className="relative border p-4 h-auto w-56 flex-shrink-0 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out"
+              >
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
+                />
+                <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
+                <p className="text-base font-bold">${product.price.toFixed(2)}</p>
 
-              {/* Hover effects */}
-              <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+                {/* Hover effects */}
+                <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
                 <button
                   className="bg-blue-500 text-white p-2 rounded-full mx-1"
                   onClick={() => addToCart(product)} // Add to Cart
@@ -228,19 +257,19 @@ const Decoration = () => {
                   <FaEye />
                 </button>
               </div>
-            </div>
-          ))
-        ) : (
-          <p>No top-selling products found.</p>
-        )}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <h1 className="text-2xl font-bold mb-4">Decoration</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-8">
+
+      <h1 className="text-2xl font-bold mb-10 mt-10">Decoration</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-8">
         {products.length > 0 ? (
           products.map(product => (
             <div
               key={product.id}
-              className="relative border p-4 h-auto w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="relative border p-10 h-auto w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
             >
               <img
                 src={product.image}
@@ -268,10 +297,11 @@ const Decoration = () => {
           <p>No products found.</p>
         )}
       </div>
+
       {/* Modal for product details */}
       {isModalOpen && selectedProduct && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-          <div className="bg-violet-200 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
+          <div className="bg-[#64bdce] p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
             <button
               onClick={handleModalClose}
               className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
@@ -297,10 +327,8 @@ const Decoration = () => {
           </div>
         </div>
       )}
-
     </div>
   );
 };
 
 export default Decoration;
-
