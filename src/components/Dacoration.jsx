@@ -193,8 +193,11 @@ const Decoration = () => {
   };
 
   const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % topSelling.length);
+    setCurrentSlide((prev) =>
+      Math.min(prev + 1, topSelling.length - 1)
+    );
   };
+
 
   const handlePrevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + topSelling.length) % topSelling.length);
@@ -213,16 +216,18 @@ const Decoration = () => {
       
       {/* Carousel */}
       <div className="relative">
-        <button
+      <button
           onClick={handlePrevSlide}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+          className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={currentSlide===0}
         >
           <FaChevronLeft />
         </button>
-        
+
         <button
           onClick={handleNextSlide}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+          className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={currentSlide === topSelling.length - 5}
         >
           <FaChevronRight />
         </button>
@@ -230,7 +235,7 @@ const Decoration = () => {
         <div className="overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-300 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            style={{ transform: `translateX(-${currentSlide * 100/5}%)` }}
           >
             {topSelling.map(product => (
               <div

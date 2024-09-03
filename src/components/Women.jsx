@@ -181,7 +181,9 @@ const Women = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % topSelling.length);
+    setCurrentSlide((prev) =>
+      Math.min(prev + 1, topSelling.length - 1)
+    );
   };
 
   const handlePrevSlide = () => {
@@ -206,29 +208,31 @@ const Women = () => {
           <h1 className="text-4xl text-white font-bold">Women's Fashion</h1>
         </div>
       </div>
-      
+
       <h2 className="text-2xl font-bold mb-10">Top Selling Products</h2>
-      
+
       {/* Carousel */}
       <div className="relative">
         <button
           onClick={handlePrevSlide}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+          className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={currentSlide===0}
         >
           <FaChevronLeft />
         </button>
-        
+
         <button
           onClick={handleNextSlide}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+          className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={currentSlide === topSelling.length - 5}
         >
           <FaChevronRight />
         </button>
-        
+
         <div className="overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-300 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            style={{ transform: `translateX(-${currentSlide * 100/5}%)` }}
           >
             {topSelling.map(product => (
               <div
@@ -245,21 +249,22 @@ const Women = () => {
 
                 {/* Hover effects */}
                 <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-                <button
-                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                  onClick={() => addToCart(product)} // Add to Cart
-                >
-                  <FaCartPlus />
-                </button>
-                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                  <FaEye />
-                </button>
-              </div>
+                  <button
+                    className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                    onClick={() => addToCart(product)} // Add to Cart
+                  >
+                    <FaCartPlus />
+                  </button>
+                  <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                    <FaEye />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
+
       {/* Women Fashion Products */}
       <h1 className="text-2xl font-bold mb-4">Women Fashion</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-8">
