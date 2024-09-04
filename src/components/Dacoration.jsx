@@ -17,6 +17,7 @@ import d12 from '../assets/img/d12.jpg';
 import d13 from '../assets/img/d13.jpg';
 import d14 from '../assets/img/d14.jpg';
 import d15 from '../assets/img/d15.jpg';
+import banner from '../assets/img/banner6.jpg'
 import { CartContext } from '../contexts/CartContext';
 export const Decorationproducts = [
   {
@@ -175,8 +176,9 @@ export const Decorationproducts = [
 export const TopSellingProducts = Decorationproducts.filter(product => product.rating >= 4.6);
 
 const Decoration = () => {
-  const [products] = useState(Decorationproducts);
-  const [topSelling] = useState(TopSellingProducts);
+  const [products, setproducts] = useState(Decorationproducts);
+  const [topSelling, settopSelling] = useState(TopSellingProducts);
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -202,16 +204,84 @@ const Decoration = () => {
   const handlePrevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + topSelling.length) % topSelling.length);
   };
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
 
+    // Filter top-selling products
+    const filteredTopSelling = category === 'All' ? TopSellingProducts : TopSellingProducts.filter(product => product.subcategory === category);
+    settopSelling(filteredTopSelling);
+
+    // Filter accessories products
+    const filteredProducts = category === 'All' ? Decorationproducts : Decorationproducts.filter(product => product.subcategory === category);
+    setproducts(filteredProducts);
+
+    setCurrentSlide(0);
+  };
   return (
     <div className="p-4">
       {/* Main Banner Section */}
-      <div className="bg-cover bg-center h-64 mb-8" style={{ backgroundImage: `url(${cover5})` }}>
-        <div className="flex justify-center items-center h-full bg-black bg-opacity-50">
-          <h1 className="text-4xl text-white font-bold">Decorations</h1>
+      <section className="relative h-screen mb-16 border-8 border-l-cyan-900 border-b-cyan-900 border-t-[#5e4b08] border-r-[#5e4b08] flex items-center overflow-hidden">
+        <div className="flex-1 flex flex-col justify-center p-5 text-black">
+          <h1 className="text-4xl md:text-5xl font-extrabold font-serif mb-4">
+            Upgrade Your Space with Modern Home Appliances
+          </h1>
+          <p className="mt-3 text-lg md:text-xl text-gray-800 font-semibold mb-6">
+            Explore our cutting-edge home appliances designed to enhance your living experience.<br />
+            From efficient kitchen gadgets to powerful cleaning solutions, find everything you need to modernize your home.
+          </p>
+          <a
+            href="#products"
+            className="px-5 py-3 border-2 border-black text-black font-semibold text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
+          >
+            Discover More
+          </a>
         </div>
+        <div className="flex-1 flex justify-center items-center p-5">
+          <img
+            src={banner}
+            alt="Home Appliances"
+            className="w-full h-96 rounded-t-full max-w-md object-cover"
+          />
+        </div>
+      </section>
+      <div id="products" className="mb-6 flex justify-center space-x-4">
+        <button
+          onClick={() => handleCategoryChange('All')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          All
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Clocks')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Clocks' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Clocks
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Table Lamps')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Table Lamps' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Table Lamps
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Vases')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Vases' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Vases
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Wall Art')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Wall Art' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Wall Art
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Cushions')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Cushions' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Cushions
+        </button>
       </div>
-      
       <h2 className="text-2xl font-bold mb-10">Top Selling Products</h2>
       
       {/* Carousel */}

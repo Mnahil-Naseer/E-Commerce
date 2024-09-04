@@ -217,7 +217,7 @@ const Women = () => {
   return (
     <div className="p-4">
       {/* Main Banner Section */}
-      <section className="relative h-screen mb-16 border-8 border-[#08465c] flex items-center overflow-hidden">
+      <section className="relative h-screen mb-16 border-8 border-[#fab790] flex items-center overflow-hidden">
       <div className="flex-1 flex justify-center items-center p-5">
           <img
             src={banner}
@@ -243,28 +243,28 @@ const Women = () => {
       </section>
 
       {/* Category Buttons */}
-      <div className="mb-6 flex justify-center space-x-4">
+      <div id="products" className="mb-6 flex justify-center space-x-4">
         <button
           onClick={() => handleCategoryChange('All')}
-          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
         >
           All
         </button>
         <button
           onClick={() => handleCategoryChange('Formal')}
-          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Formal' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Formal' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
         >
           Formal
         </button>
         <button
           onClick={() => handleCategoryChange('Casual')}
-          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Casual' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Casual' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
         >
           Casual
         </button>
       </div>
 
-      <h2 id="products" className="text-3xl font-extrabold mb-10 font-serif">Top Selling Products</h2>
+      <h2 className="text-3xl font-extrabold mb-10 font-serif">Top Selling Products</h2>
 
       {/* Carousel */}
       <div className="relative mb-16">

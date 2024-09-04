@@ -238,45 +238,45 @@ const Accessories = () => {
           <img
             src={banner}
             alt="Elegant Accessories"
-            className="w-full h-auto max-w-md object-cover"
+            className="w-full h-96 max-w-md object-cover"
           />
         </div>
       </section>
       {/* Category Buttons */}
-      <div className="mb-6 flex justify-center space-x-4">
+      <div id="products" className="mb-6 flex justify-center space-x-4">
         <button
           onClick={() => handleCategoryChange('All')}
-          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
         >
           All
         </button>
         <button
           onClick={() => handleCategoryChange('Watches')}
-          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Watches' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Watches' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
         >
           Watches
         </button>
         <button
           onClick={() => handleCategoryChange('Earrings')}
-          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Earrings' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Earrings' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
         >
           Earrings
         </button>
         <button
           onClick={() => handleCategoryChange('Necklaces')}
-          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Necklaces' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Necklaces' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
         >
           Necklaces
         </button>
         <button
           onClick={() => handleCategoryChange('Rings')}
-          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Rings' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Rings' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
         >
           Rings
         </button>
       </div>
 
-      <h2 id="products" className="text-3xl font-extrabold mb-10 font-serif">Top Selling Products</h2>
+      <h2  className="text-3xl font-extrabold mb-10 font-serif">Top Selling Products</h2>
 
       {/* Carousel */}
       <div className="relative mb-16">

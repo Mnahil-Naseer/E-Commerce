@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import cover4 from '../assets/img/cover4.jpg'
 import p1 from '../assets/img/appliance1.jpg';
 import p2 from '../assets/img/p2.jpg';
@@ -16,6 +16,7 @@ import p12 from '../assets/img/p12.jpg';
 import p13 from '../assets/img/p13.jpg';
 import p14 from '../assets/img/p14.jpg';
 import p15 from '../assets/img/p15.jpg';
+import banner from '../assets/img/banner5.jpg';
 import { FaCartPlus, FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { CartContext } from '../contexts/CartContext';
 export const Homeproducts = [
@@ -78,7 +79,7 @@ export const Homeproducts = [
     title: 'Automatic Bread Maker',
     price: 345.00,
     description: 'A compact automatic bread maker that kneads, rises, and bakes bread with customizable settings.'
-},
+  },
   {
     id: uuidv4(),
     image: p7,
@@ -175,11 +176,12 @@ export const Homeproducts = [
 export const TopSellingProducts = Homeproducts.filter(product => product.rating >= 4.5);
 
 const HomeAppliances = () => {
-  const [products] = useState(Homeproducts);
-  const [topSelling] = useState(TopSellingProducts);
+  const [products, setproducts] = useState(Homeproducts);
+  const [topSelling, settopSelling] = useState(TopSellingProducts);
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const { addToCart } = useContext(CartContext); 
+  const { addToCart } = useContext(CartContext);
   const [currentSlide, setCurrentSlide] = useState(0);
   const handleNextSlide = () => {
     setCurrentSlide((prev) =>
@@ -200,23 +202,81 @@ const HomeAppliances = () => {
     setIsModalOpen(false);
     setSelectedProduct(null);
   };
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
 
+    // Filter top-selling products
+    const filteredTopSelling = category === 'All' ? TopSellingProducts : TopSellingProducts.filter(product => product.subcategory === category);
+    settopSelling(filteredTopSelling);
+
+    // Filter accessories products
+    const filteredProducts = category === 'All' ? Homeproducts : Homeproducts.filter(product => product.subcategory === category);
+    setproducts(filteredProducts);
+
+    setCurrentSlide(0);
+  };
   return (
     <div className="p-4">
       {/* Main Banner Section */}
-      <div className="bg-cover bg-center h-64 mb-8" style={{ backgroundImage: `url(${cover4})` }}>
-        <div className="flex justify-center items-center h-full bg-black bg-opacity-50">
-          <h1 className="text-4xl text-white font-bold">Women's Fashion</h1>
+      <section className="relative h-screen mb-16 border-8 border-gray-800 flex items-center overflow-hidden">
+      <div className="flex-1 flex justify-center items-center p-5">
+          <img
+            src={banner}
+            alt="Home Appliances"
+            className="w-full h-96 rounded-t-full max-w-md object-cover"
+          />
         </div>
+        <div className="flex-1 flex flex-col justify-center p-5 text-black">
+          <h1 className="text-4xl md:text-5xl font-extrabold font-serif mb-4">
+            Upgrade Your Space with Modern Home Appliances
+          </h1>
+          <p className="mt-3 text-lg md:text-xl text-gray-800 font-semibold mb-6">
+            Explore our cutting-edge home appliances designed to enhance your living experience.<br />
+            From efficient kitchen gadgets to powerful cleaning solutions, find everything you need to modernize your home.
+          </p>
+          <a
+            href="#products"
+            className="px-5 py-3 border-2 border-black text-black font-semibold text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
+          >
+            Discover More
+          </a>
+        </div>
+      </section>
+
+      <div id="products" className="mb-6 flex justify-center space-x-4">
+        <button
+          onClick={() => handleCategoryChange('All')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          All
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Kitchen Appliances')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Kitchen Appliances' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Kitchen Appliances
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Home Cleaning')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Home Cleaning' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Home Cleaning
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Laundry Appliances')}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Laundry Appliances' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Laundry Appliances
+        </button>
       </div>
       <h2 className="text-2xl font-bold mb-10">Top Selling Products</h2>
-      
+
       {/* Carousel */}
       <div className="relative">
-      <button
+        <button
           onClick={handlePrevSlide}
           className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={currentSlide===0}
+          disabled={currentSlide === 0}
         >
           <FaChevronLeft />
         </button>
@@ -228,11 +288,11 @@ const HomeAppliances = () => {
         >
           <FaChevronRight />
         </button>
-        
+
         <div className="overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-300 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100/5}%)` }}
+            style={{ transform: `translateX(-${currentSlide * 100 / 5}%)` }}
           >
             {topSelling.map(product => (
               <div
@@ -249,16 +309,16 @@ const HomeAppliances = () => {
 
                 {/* Hover effects */}
                 <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-                <button
-                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                  onClick={() => addToCart(product)} // Add to Cart
-                >
-                  <FaCartPlus />
-                </button>
-                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                  <FaEye />
-                </button>
-              </div>
+                  <button
+                    className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                    onClick={() => addToCart(product)} // Add to Cart
+                  >
+                    <FaCartPlus />
+                  </button>
+                  <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                    <FaEye />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
