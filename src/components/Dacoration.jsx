@@ -220,141 +220,83 @@ const Decoration = () => {
   };
   return (
     <div className="p-4">
-      {/* Main Banner Section */}
-      <section className="relative h-screen mb-16 border-8 border-l-cyan-900 border-b-cyan-900 border-t-[#5e4b08] border-r-[#5e4b08] flex items-center overflow-hidden">
-        <div className="flex-1 flex flex-col justify-center p-5 text-black">
-          <h1 className="text-4xl md:text-5xl font-extrabold font-serif mb-4">
-            Upgrade Your Space with Modern Home Appliances
-          </h1>
-          <p className="mt-3 text-lg md:text-xl text-gray-800 font-semibold mb-6">
-            Explore our cutting-edge home appliances designed to enhance your living experience.<br />
-            From efficient kitchen gadgets to powerful cleaning solutions, find everything you need to modernize your home.
-          </p>
-          <a
-            href="#products"
-            className="px-5 py-3 border-2 border-black text-black font-semibold text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
-          >
-            Discover More
-          </a>
-        </div>
-        <div className="flex-1 flex justify-center items-center p-5">
-          <img
-            src={banner}
-            alt="Home Appliances"
-            className="w-full h-96 rounded-t-full max-w-md object-cover"
-          />
-        </div>
-      </section>
-      <div id="products" className="mb-6 flex justify-center space-x-4">
-        <button
-          onClick={() => handleCategoryChange('All')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+    {/* Main Banner Section */}
+    <section className="relative h-screen mb-16 border-8 border-l-cyan-900 border-b-cyan-900 border-t-[#5e4b08] border-r-[#5e4b08] flex flex-col md:flex-row items-center overflow-hidden">
+      <div className="flex-1 flex flex-col justify-center p-5 text-black">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-serif mb-4">
+          Upgrade Your Space with Modern Home Appliances
+        </h1>
+        <p className="mt-3 text-base sm:text-lg md:text-xl text-gray-800 font-semibold mb-6">
+          Explore our cutting-edge home appliances designed to enhance your living experience.<br />
+          From efficient kitchen gadgets to powerful cleaning solutions, find everything you need to modernize your home.
+        </p>
+        <a
+          href="#products"
+          className="px-4 py-2 sm:px-5 sm:py-3 border-2 border-black text-black font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
         >
-          All
-        </button>
-        <button
-          onClick={() => handleCategoryChange('Clocks')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Clocks' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
-        >
-          Clocks
-        </button>
-        <button
-          onClick={() => handleCategoryChange('Table Lamps')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Table Lamps' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
-        >
-          Table Lamps
-        </button>
-        <button
-          onClick={() => handleCategoryChange('Vases')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Vases' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
-        >
-          Vases
-        </button>
-        <button
-          onClick={() => handleCategoryChange('Wall Art')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Wall Art' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
-        >
-          Wall Art
-        </button>
-        <button
-          onClick={() => handleCategoryChange('Cushions')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Cushions' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
-        >
-          Cushions
-        </button>
+          Discover More
+        </a>
       </div>
-      <h2 className="text-2xl font-bold mb-10">Top Selling Products</h2>
-      
-      {/* Carousel */}
-      <div className="relative">
+      <div className="flex-1 flex justify-center items-center p-5">
+        <img
+          src={banner}
+          alt="Home Appliances"
+          className="w-72 h-72 sm:h-64 md:h-80 lg:h-96 rounded-t-full max-w-md object-cover"
+        />
+      </div>
+    </section>
+  
+    {/* Category Buttons */}
+    <div id="products" className="mb-6 flex flex-wrap justify-center space-x-4">
+      {['All', 'Clocks', 'Table Lamps', 'Vases', 'Wall Art', 'Cushions'].map(category => (
+        <button
+          key={category}
+          onClick={() => handleCategoryChange(category)}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === category ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold m-1`}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+  
+    <h2 className="text-2xl sm:text-3xl font-extrabold font-serif mt-16 mb-10">Top Selling Products</h2>
+  
+    {/* Carousel */}
+    <div className="relative">
       <button
-          onClick={handlePrevSlide}
-          className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={currentSlide===0}
+        onClick={handlePrevSlide}
+        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        disabled={currentSlide === 0}
+      >
+        <FaChevronLeft />
+      </button>
+  
+      <button
+        onClick={handleNextSlide}
+        className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        disabled={currentSlide === topSelling.length - 5}
+      >
+        <FaChevronRight />
+      </button>
+  
+      <div className="overflow-hidden">
+        <div
+          className="flex gap-4 sm:gap-6 transition-transform duration-300 ease-in-out"
+          style={{ transform: `translateX(-${currentSlide * 100 / 5}%)` }}
         >
-          <FaChevronLeft />
-        </button>
-
-        <button
-          onClick={handleNextSlide}
-          className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={currentSlide === topSelling.length - 5}
-        >
-          <FaChevronRight />
-        </button>
-        
-        <div className="overflow-hidden">
-          <div
-            className="flex gap-6 transition-transform duration-300 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100/5}%)` }}
-          >
-            {topSelling.map(product => (
-              <div
-                key={product.id}
-                className="relative border p-4 h-auto w-56 flex-shrink-0 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out"
-              >
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
-                />
-                <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
-                <p className="text-base font-bold">${product.price.toFixed(2)}</p>
-
-                {/* Hover effects */}
-                <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-                <button
-                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                  onClick={() => addToCart(product)} // Add to Cart
-                >
-                  <FaCartPlus />
-                </button>
-                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                  <FaEye />
-                </button>
-              </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <h1 className="text-2xl font-bold mb-10 mt-10">Decoration</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-8">
-        {products.length > 0 ? (
-          products.map(product => (
+          {topSelling.map(product => (
             <div
               key={product.id}
-              className="relative border p-10 h-auto w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="relative border p-4 sm:p-6 h-auto w-44 sm:w-56 flex-shrink-0 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out"
             >
               <img
                 src={product.image}
                 alt={product.title}
-                className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
+                className="w-full h-32 sm:h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
               <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
               <p className="text-base font-bold">${product.price.toFixed(2)}</p>
-
+  
               {/* Hover effects */}
               <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
                 <button
@@ -368,42 +310,77 @@ const Decoration = () => {
                 </button>
               </div>
             </div>
-          ))
-        ) : (
-          <p>No products found.</p>
-        )}
-      </div>
-
-      {/* Modal for product details */}
-      {isModalOpen && selectedProduct && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-          <div className="bg-[#64bdce] p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
-            <button
-              onClick={handleModalClose}
-              className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
-            >
-              <span className="text-3xl">&times;</span>
-            </button>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-4">{selectedProduct.title}</h2>
-            <img className="w-26 h-36 sm:h-48 md:h-56 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
-            <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
-            <div className="flex flex-col sm:flex-row justify-between items-center">
-              <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
-              <h3 className="text-sm font-semibold">{selectedProduct.rating}⭐</h3>
-            </div>
-            <button
-              onClick={() => {
-                addToCart(selectedProduct);
-                handleModalClose();
-              }}
-              className="mt-4 bg-violet-300 hover:bg-violet-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600 "
-            >
-              Add to Cart
-            </button>
-          </div>
+          ))}
         </div>
+      </div>
+    </div>
+  
+    <h1 className="text-2xl sm:text-3xl font-extrabold mb-10 mt-16">Decoration</h1>
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8 mb-8">
+      {products.length > 0 ? (
+        products.map(product => (
+          <div
+            key={product.id}
+            className="relative border p-4 sm:p-6 h-auto w-44 sm:w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+          >
+            <img
+              src={product.image}
+              alt={product.title}
+              className="w-full h-32 sm:h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
+            />
+            <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
+            <p className="text-base font-bold">${product.price.toFixed(2)}</p>
+  
+            {/* Hover effects */}
+            <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+              <button
+                className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                onClick={() => addToCart(product)} // Add to Cart
+              >
+                <FaCartPlus />
+              </button>
+              <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                <FaEye />
+              </button>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No products found.</p>
       )}
     </div>
+  
+    {/* Modal for product details */}
+    {isModalOpen && selectedProduct && (
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
+        <div className="bg-[#64bdce] p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
+          <button
+            onClick={handleModalClose}
+            className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
+          >
+            <span className="text-3xl">&times;</span>
+          </button>
+          <h2 className="text-lg sm:text-xl font-semibold mb-4">{selectedProduct.title}</h2>
+          <img className="w-24 h-36 sm:w-32 sm:h-48 md:w-40 md:h-56 lg:w-48 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
+          <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
+          <div className="flex flex-col sm:flex-row justify-between items-center">
+            <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
+            <h3 className="text-sm font-semibold">{selectedProduct.rating}⭐</h3>
+          </div>
+          <button
+            onClick={() => {
+              addToCart(selectedProduct);
+              handleModalClose();
+            }}
+            className="mt-4 bg-violet-300 hover:bg-violet-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    )}
+  </div>
+  
   );
 };
 

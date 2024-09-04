@@ -218,179 +218,159 @@ const Accessories = () => {
 
   return (
     <div className="p-4">
-      {/* Main Banner Section */}
-      <section className="relative h-screen mb-16 border-8 border-[#08465c] flex items-center overflow-hidden">
-        <div className="flex-1 flex flex-col justify-center p-5 text-black">
-          <h1 className="text-4xl md:text-5xl font-extrabold font-serif mb-4">
-            Elevate Your Style with Accessories
-          </h1>
-          <p className="mt-3 text-lg md:text-xl text-gray-800 font-semibold mb-6">
-            Explore our curated collection of accessories designed to complement any outfit.<br />
-            From elegant jewelry to chic handbags, find the perfect finishing touches to enhance your look.
-          </p>
-          <a
-            href="#products"
-            className="px-5 py-3 border-2 border-black text-black font-semibold text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
-          >
-            Shop Now
-          </a>
-        </div>
-        <div className="flex-1 flex justify-center items-center p-5">
-          <img
-            src={banner}
-            alt="Elegant Accessories"
-            className="w-full h-96 max-w-md object-cover"
-          />
-        </div>
-      </section>
-      {/* Category Buttons */}
-      <div id="products" className="mb-6 flex justify-center space-x-4">
-        <button
-          onClick={() => handleCategoryChange('All')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+    {/* Main Banner Section */}
+    <section className="relative h-screen mb-16 border-8 border-[#08465c] flex flex-col md:flex-row items-center overflow-hidden">
+      <div className="flex-1 flex flex-col justify-center p-5 text-black">
+        <h1 className="text-3xl md:text-5xl font-extrabold font-serif mb-4">
+          Elevate Your Style with Accessories
+        </h1>
+        <p className="mt-3 text-base md:text-xl text-gray-800 font-semibold mb-6">
+          Explore our curated collection of accessories designed to complement any outfit.<br />
+          From elegant jewelry to chic handbags, find the perfect finishing touches to enhance your look.
+        </p>
+        <a
+          href="#products"
+          className="px-5 py-3 border-2 border-black text-black font-semibold text-base md:text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
         >
-          All
-        </button>
-        <button
-          onClick={() => handleCategoryChange('Watches')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Watches' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
-        >
-          Watches
-        </button>
-        <button
-          onClick={() => handleCategoryChange('Earrings')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Earrings' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
-        >
-          Earrings
-        </button>
-        <button
-          onClick={() => handleCategoryChange('Necklaces')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Necklaces' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
-        >
-          Necklaces
-        </button>
-        <button
-          onClick={() => handleCategoryChange('Rings')}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Rings' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
-        >
-          Rings
-        </button>
+          Shop Now
+        </a>
       </div>
-
-      <h2  className="text-3xl font-extrabold mb-10 font-serif">Top Selling Products</h2>
-
-      {/* Carousel */}
-      <div className="relative mb-16">
-        <button
-          onClick={handlePrevSlide}
-          className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={currentSlide === 0}
-        >
-          <FaChevronLeft />
-        </button>
-
-        <button
-          onClick={handleNextSlide}
-          className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={currentSlide === topSelling.length - 5}
-        >
-          <FaChevronRight />
-        </button>
-
-        <div className="overflow-hidden">
-          <div
-            className="flex gap-6 transition-transform duration-300 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100 / 5}%)` }}
-          >
-            {topSelling.map(product => (
-              <div
-                key={product.id}
-                className="relative border p-4 h-auto w-56 flex-shrink-0 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out"
-              >
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
-                />
-                <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
-                <p className="text-base font-bold">${product.price.toFixed(2)}</p>
-
-                {/* Hover effects */}
-                <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-                  <button
-                    className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                    onClick={() => addToCart(product)} // Add to Cart
-                  >
-                    <FaCartPlus />
-                  </button>
-                  <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                    <FaEye />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="flex-1 flex justify-center items-center p-5">
+        <img
+          src={banner}
+          alt="Elegant Accessories"
+          className="w-full h-96 max-w-md object-cover"
+        />
       </div>
-
-      <h1 className="text-3xl font-extrabold mb-6">Accessories</h1>
-
-      {/* Accessories Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map(product => (
-          <div key={product.id} className="relative border p-4 rounded-lg shadow-lg overflow-hidden group">
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
-            />
-            <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
-            <p className="text-base font-bold">${product.price.toFixed(2)}</p>
-
-            {/* Hover effects */}
-            <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-              <button
-                className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                onClick={() => addToCart(product)} // Add to Cart
-              >
-                <FaCartPlus />
-              </button>
-              <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                <FaEye />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Modal for product details */}
-      {isModalOpen && selectedProduct && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-          <div className="bg-white p-4 rounded-lg w-full max-w-lg relative">
-            <button
-              className="absolute top-2 right-2 text-xl font-bold"
-              onClick={handleModalClose}
-            >
-              &times;
-            </button>
-            <h2 className="text-2xl font-bold mb-4">{selectedProduct.title}</h2>
-            <img
-              src={selectedProduct.image}
-              alt={selectedProduct.title}
-              className="w-full h-64 object-cover mb-4"
-            />
-            <p className="text-lg mb-4">{selectedProduct.description}</p>
-            <p className="text-xl font-bold mb-4">${selectedProduct.price.toFixed(2)}</p>
-            <button
-              onClick={() => addToCart(selectedProduct)}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-      )}
+    </section>
+    {/* Category Buttons */}
+    <div id="products" className="mb-6 flex flex-wrap justify-center gap-4">
+      {['All', 'Watches', 'Earrings', 'Necklaces', 'Rings'].map(category => (
+        <button
+          key={category}
+          onClick={() => handleCategoryChange(category)}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === category ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          {category}
+        </button>
+      ))}
     </div>
+  
+    <h2 className="text-2xl md:text-3xl font-extrabold mb-10 mt-16 font-serif">Top Selling Products</h2>
+  
+    {/* Carousel */}
+    <div className="relative mb-16">
+      <button
+        onClick={handlePrevSlide}
+        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        disabled={currentSlide === 0}
+      >
+        <FaChevronLeft />
+      </button>
+  
+      <button
+        onClick={handleNextSlide}
+        className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        disabled={currentSlide === topSelling.length - 5}
+      >
+        <FaChevronRight />
+      </button>
+  
+      <div className="overflow-hidden">
+        <div
+          className="flex gap-4 md:gap-6 transition-transform duration-300 ease-in-out"
+          style={{ transform: `translateX(-${currentSlide * 100 / 5}%)` }}
+        >
+          {topSelling.map(product => (
+            <div
+              key={product.id}
+              className="relative border p-4 h-auto w-44 md:w-56 flex-shrink-0 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out"
+            >
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-full h-32 md:h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
+              />
+              <h2 className="text-xs md:text-sm font-semibold mb-1">{product.title}</h2>
+              <p className="text-sm md:text-base font-bold">${product.price.toFixed(2)}</p>
+  
+              {/* Hover effects */}
+              <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+                <button
+                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                  onClick={() => addToCart(product)} // Add to Cart
+                >
+                  <FaCartPlus />
+                </button>
+                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                  <FaEye />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  
+    <h1 className="text-2xl md:text-3xl font-extrabold mb-6">Accessories</h1>
+  
+    {/* Accessories Grid */}
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {products.map(product => (
+        <div key={product.id} className="relative border p-4 rounded-lg shadow-lg overflow-hidden group">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-full h-32 md:h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
+          />
+          <h2 className="text-xs md:text-sm font-semibold mb-1">{product.title}</h2>
+          <p className="text-sm md:text-base font-bold">${product.price.toFixed(2)}</p>
+  
+          {/* Hover effects */}
+          <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+            <button
+              className="bg-blue-500 text-white p-2 rounded-full mx-1"
+              onClick={() => addToCart(product)} // Add to Cart
+            >
+              <FaCartPlus />
+            </button>
+            <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+              <FaEye />
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  
+    {/* Modal for product details */}
+    {isModalOpen && selectedProduct && (
+      <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
+        <div className="bg-white p-4 rounded-lg w-full max-w-lg relative">
+          <button
+            className="absolute top-2 right-2 text-xl font-bold"
+            onClick={handleModalClose}
+          >
+            &times;
+          </button>
+          <h2 className="text-xl md:text-2xl font-bold mb-4">{selectedProduct.title}</h2>
+          <img
+            src={selectedProduct.image}
+            alt={selectedProduct.title}
+            className="w-full h-48 md:h-64 object-cover mb-4"
+          />
+          <p className="text-base md:text-lg mb-4">{selectedProduct.description}</p>
+          <p className="text-lg md:text-xl font-bold mb-4">${selectedProduct.price.toFixed(2)}</p>
+          <button
+            onClick={() => addToCart(selectedProduct)}
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    )}
+  </div>
+  
   );
 };
 
