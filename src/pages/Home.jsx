@@ -350,7 +350,7 @@ const Home = () => {
                 className="relative flex-none w-full sm:w-1/2 lg:w-1/4 px-4 group"
               >
                 <div className="bg-white p-4 rounded-lg shadow-lg transition relative overflow-hidden">
-                  <div className="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded-full">
+                  <div className="absolute top-4 animate-pulse left-4 bg-red-700 text-white text-sm font-bold px-2 py-1 rounded-full">
                     Sale
                   </div>
                   <img
@@ -416,7 +416,7 @@ const Home = () => {
               >
                 <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition relative overflow-hidden">
                   {/* New Tag */}
-                  <div className="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded-full">
+                  <div className="absolute top-4 animate-pulse left-4 bg-red-700 text-white text-sm font-bold px-2 py-1 rounded-full">
                     New
                   </div>
 

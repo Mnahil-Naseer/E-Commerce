@@ -10,12 +10,14 @@ import { FiLogOut } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { useAuth } from "../contexts/AuthContext";
 import { FiSearch } from "react-icons/fi"; // Import the search icon
+import { HiMenu } from "react-icons/hi"; // Import the hamburger menu icon
 
 const Header = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext);
   const { itemAmount } = useContext(CartContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -31,6 +33,7 @@ const Header = () => {
       }
     }
   }, [location]);
+
   useEffect(() => {
     if (isInView) {
       mainControls.start("visible");
@@ -47,7 +50,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-300 text-black font-semibold shadow-2xl  w-full z-20 transition-all duration-300">
+    <header className="bg-gray-300 text-black font-semibold shadow-2xl w-full z-20 transition-all duration-300">
       <div
         ref={ref}
         className="container mx-auto flex items-center justify-between h-full px-4 md:px-8"
@@ -69,8 +72,9 @@ const Header = () => {
           </motion.div>
         </Link>
 
+        {/* Desktop Navigation */}
         <motion.div
-          className="flex-grow flex justify-center md:flex"
+          className="hidden md:flex flex-grow justify-center"
           variants={{
             hidden: { opacity: 0, y: -100 },
             visible: { opacity: 1, y: 1 },
@@ -109,9 +113,39 @@ const Header = () => {
           </nav>
         </motion.div>
 
+        {/* Mobile Navigation Toggle */}
+        <div className="md:hidden flex items-center">
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <HiMenu className="text-3xl" />
+          </button>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="absolute top-full left-0 right-0 bg-gray-300 p-4 z-20 md:hidden">
+            <nav className="flex flex-col space-y-4">
+              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+                Home
+              </Link>
+              <Link to="/#Home" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+                Collections
+              </Link>
+              <Link to="/#BigSave" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+                Big Save
+              </Link>
+              <Link to="/#NewArrivals" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+                New Arrivals
+              </Link>
+              <Link to="/#Footer" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+                Contact Us
+              </Link>
+            </nav>
+          </div>
+        )}
+
         <motion.div
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="cursor-pointer flex relative"
+          className="cursor-pointer animate-slideDown flex relative"
           variants={{
             hidden: { opacity: 0, x: 100 },
             visible: { opacity: 1, x: 1 },
