@@ -217,7 +217,7 @@ const HomeAppliances = () => {
     setCurrentSlide(0);
   };
   return (
-    <Link to="homeAppliances">
+    
     <div className="p-4">
       {/* Main Banner Section */}
       <section className="relative h-screen mb-16 border-8 border-gray-800 flex items-center overflow-hidden">
@@ -389,9 +389,7 @@ const HomeAppliances = () => {
           </div>
         </div>
       )}
-
     </div>
-    </Link>
   );
 };
 
