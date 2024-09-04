@@ -256,241 +256,196 @@ const Home = () => {
 
   return (
     <div>
-      <MainBanner />
-      <section id="ShoppingBenefits" className="py-8 ">
-        <div className="container  px-4 sm:px-8 lg:px-16">
-          <div className="flex flex-row gap-10 justify-between ">
-            <div className="flex flex-row justify-around items-center w-full ">
-              <div className="flex  mb-4 lg:mb-0">
-                <h2 className="text-xl font-bold mb-2">Better choices, Better prices</h2>
-              </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <FaDollarSign className='text-3xl' />
-                <h3 className="text-xs font-bold">Value-for-money</h3>
-                <p className="text-xs text-gray-600">We offer competitive prices on millions of items</p>
-              </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <FaUserGroup className='text-3xl' />
-                <h3 className="text-xs font-bold">Shoppers worldwide</h3>
-                <p className="text-xs text-gray-600">More than 300 million shoppers from 200+ countries & regions</p>
-              </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <GrDeliver className='text-3xl' />
-                <h3 className="text-xs font-bold">Fast delivery</h3>
-                <p className="text-xs text-gray-600">Faster delivery on selected items thanks to our improved logistics</p>
-              </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <FaWallet className='text-3xl' />
-                <h3 className="text-xs font-bold">Safe payments</h3>
-                <p className="text-xs text-gray-600">Safe payment methods preferred by international shoppers</p>
-              </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <AiOutlineFileProtect className='text-3xl' />
-                <h3 className="text-xs font-bold">Buyer protection</h3>
-                <p className="text-xs text-gray-600">Get a refund if items arrive late or not as described</p>
-              </div>
+  <MainBanner />
+
+  <section id="ShoppingBenefits" className="py-8">
+    <div className="container px-4 sm:px-8 lg:px-16">
+      <div className="flex flex-wrap gap-6 lg:gap-10 justify-between">
+        <div className="flex flex-col lg:flex-row items-center w-full">
+          <h2 className="text-xl font-bold mb-4 lg:mb-0 lg:text-2xl">Better choices, Better prices</h2>
+          <div className="flex flex-wrap gap-6 lg:gap-10 w-full lg:w-auto">
+            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+              <FaDollarSign className='text-3xl' />
+              <h3 className="text-xs lg:text-sm font-bold">Value-for-money</h3>
+              <p className="text-xs lg:text-sm text-gray-600">We offer competitive prices on millions of items</p>
+            </div>
+            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+              <FaUserGroup className='text-3xl' />
+              <h3 className="text-xs lg:text-sm font-bold">Shoppers worldwide</h3>
+              <p className="text-xs lg:text-sm text-gray-600">More than 300 million shoppers from 200+ countries & regions</p>
+            </div>
+            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+              <GrDeliver className='text-3xl' />
+              <h3 className="text-xs lg:text-sm font-bold">Fast delivery</h3>
+              <p className="text-xs lg:text-sm text-gray-600">Faster delivery on selected items thanks to our improved logistics</p>
+            </div>
+            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+              <FaWallet className='text-3xl' />
+              <h3 className="text-xs lg:text-sm font-bold">Safe payments</h3>
+              <p className="text-xs lg:text-sm text-gray-600">Safe payment methods preferred by international shoppers</p>
+            </div>
+            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+              <AiOutlineFileProtect className='text-3xl' />
+              <h3 className="text-xs lg:text-sm font-bold">Buyer protection</h3>
+              <p className="text-xs lg:text-sm text-gray-600">Get a refund if items arrive late or not as described</p>
             </div>
           </div>
         </div>
-      </section>
-
-      <section id="Home" className="px-4 sm:px-8 lg:px-16">
-        <div className="relative">
-          <div className="flex flex-wrap justify-between">
-            {categories.map(({ to, image, label }) => (
-              <Link
-                to={to}
-                key={label}
-                className="flex-none w-full sm:w-1/2 lg:w-1/5 p-6" // Adjusted to show all five categories in one row
-              >
-                <div
-                  className="relative flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-600 hover:animate-zoomOut transition"
-                  style={{
-                    backgroundImage: `url('${image}')`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    height: '320px',
-                    width: '220px', // Increased height for larger display
-                  }}
-                >
-                  <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div>
-                  <div className="relative w-full p-4">
-                    <h3 className="text-xl font-semibold text-white mb-2">{label}</h3>
-                    <Link
-                      to={to}
-                      className="inline-block bg-white text-black px-4 py-2 rounded hover:bg-gray-400 hover:border hover:border-b-red-700 hover:border-l-red-700 hover:border-t-gray-900 hover:border-r-gray-900 transition"
-                    >
-                      Details
-                    </Link>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="BigSave" className="px-4 sm:px-8 lg:px-16 mt-8 relative">
-        <h2 className="text-3xl font-bold mb-6 text-left">Big Save</h2>
-        <div className="relative overflow-hidden">
-          {/* Previous Button */}
-          <button
-            onClick={handlePrevClick}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-md hover:bg-gray-600 transition-colors"
-            disabled={productIndex === 0}
-            style={{ zIndex: 10 }}
-          >
-            &lt;
-          </button>
-
-          {/* Products Container */}
-          <div className="flex transition-transform duration-700 ease-in-out">
-            {displayedProducts.map(product => (
-              <div
-                key={product.name}
-                className="relative flex-none w-full sm:w-1/2 lg:w-1/4 px-4 group"
-              >
-                <div className="bg-white p-4 rounded-lg shadow-lg transition relative overflow-hidden">
-                  <div className="absolute top-4 animate-pulse left-4 bg-red-700 text-white text-sm font-bold px-2 py-1 rounded-full">
-                    Sale
-                  </div>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out group-hover:scale-110"
-                  />
-                  <h3 className="text-lg font-bold mb-2">{product.name}</h3>
-                  <div className='flex mb-4 space-x-2'>
-                    <p className="text-yellow-400">{product.rating}</p>
-                    <p className="mt-1 text-gray-500 text-sm">{product.sold} sold</p>
-                  </div>
-                  <div className='flex flex-row gap-4'>
-                    <p className="text-lg font-bold mb-2">{product.price}</p>
-                    <p className="text-sm line-through font-light mb-2">{product.price2}</p>
-                  </div>
-                  {/* Hover icons */}
-                  <div className="absolute bg-white bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex justify-between">
-                      <button onClick={() => addToCart(product)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
-                        <FaCartPlus className='text-blue-500 text-3xl' />
-                      </button>
-                      <button onClick={() => handleModalOpen(product)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
-                        <FaEye className='text-green-500 text-3xl' />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Next Button */}
-          <button
-            onClick={handleNextClick}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-md hover:bg-gray-600 transition-colors"
-            disabled={productIndex >= products.length - itemsToShow}
-            style={{ zIndex: 10 }}
-          >
-            &gt;
-          </button>
-        </div>
-      </section>
-      <section id="NewArrivals" className="px-4 sm:px-8 lg:px-16 mt-8">
-        <h2 className="text-3xl font-bold mb-6 text-left">New Arrivals</h2>
-        <div className="relative overflow-hidden">
-          {/* Previous Button */}
-          <button
-            onClick={handleNewArrivalsPrevClick}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full z-10"
-            disabled={newProductIndex === 0}
-            style={{ zIndex: 10 }}
-          >
-            &lt;
-          </button>
-
-          {/* Products Container */}
-          <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${newProductIndex * (100 / itemsToShow)}%)` }}>
-            {displayedNewArrivals.map(newproduct => (
-              <div
-                key={newproduct.title}
-                className="flex-none w-full sm:w-1/2 lg:w-1/4 px-4 group relative"
-              >
-                <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition relative overflow-hidden">
-                  {/* New Tag */}
-                  <div className="absolute top-4 animate-pulse left-4 bg-red-700 text-white text-sm font-bold px-2 py-1 rounded-full">
-                    New
-                  </div>
-
-                  <img
-                    src={newproduct.image}
-                    alt={newproduct.title}
-                    className="w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out group-hover:scale-110"
-                  />
-                  <h3 className="text-lg font-bold mb-2">{newproduct.title}</h3>
-                  <p className="text-yellow-500">★★★★☆</p>
-                  <p className="text-lg font-bold mb-2">${newproduct.price}</p>
-
-                  {/* Hover Icons */}
-                  <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex justify-between">
-                      <button
-                        onClick={() => addToCart(newproduct)}
-                        className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition"
-                      >
-                        <FaCartPlus className="text-blue-500 text-3xl" />
-                      </button>
-                      <button
-                        onClick={() => handleModalOpen(newproduct)}
-                        className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition"
-                      >
-                        <FaEye className="text-green-500 text-3xl" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Next Button */}
-          <button
-            onClick={handleNewArrivalsNextClick}
-            className="absolute right-0 top-1/2 transform translate-y-1/2 bg-gray-700 text-white p-2 rounded-full z-10"
-            disabled={newProductIndex >= newarrivals.length - itemsToShow}
-            style={{ zIndex: 10 }}
-          >
-            &gt;
-          </button>
-        </div>
-      </section>
-      {isModalOpen && selectedProduct && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-          <div className="bg-gray-300 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
-            <button
-              onClick={handleModalClose}
-              className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
-            >
-              <span className="text-3xl">&times;</span>
-            </button>
-            <h2 className="text-xl sm:text-2xl font-semibold mb-4">{selectedProduct.title}</h2>
-            <img className="w-26 h-36 sm:h-48 md:h-56 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
-            <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
-            <div className="flex flex-col sm:flex-row justify-between items-center">
-              <h3 className="text-lg font-semibold">${selectedProduct.price}</h3>
-              <h3 className="text-sm font-semibold">{selectedProduct.rating}⭐</h3>
-            </div>
-            <button
-              onClick={() => {
-                addToCart(selectedProduct);
-                handleModalClose();
-              }}
-              className="mt-4 bg-blue-300 hover:bg-blue-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
+  </section>
+
+  <section id="Home" className="px-4 sm:px-8 lg:px-16">
+    <div className="relative">
+      <div className="flex flex-wrap gap-6 justify-between">
+        {categories.map(({ to, image, label }) => (
+          <Link
+            to={to}
+            key={label}
+            className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-4"
+          >
+            <div
+              className="relative flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-600 hover:animate-zoomOut transition"
+              style={{
+                backgroundImage: `url('${image}')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '320px',
+                width: '100%', // Adjusted to be responsive
+              }}
+            >
+              <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div>
+              <div className="relative w-full p-4">
+                <h3 className="text-lg lg:text-xl font-semibold text-white mb-2">{label}</h3>
+                <Link
+                  to={to}
+                  className="inline-block bg-white text-black px-4 py-2 rounded hover:bg-gray-400 hover:border hover:border-b-red-700 hover:border-l-red-700 hover:border-t-gray-900 hover:border-r-gray-900 transition"
+                >
+                  Details
+                </Link>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="BigSave" className="px-4 sm:px-8 lg:px-16 mt-8 relative">
+    <h2 className="text-3xl font-bold mb-6 text-left">Big Save</h2>
+    <div className="relative overflow-hidden">
+      <button
+        onClick={handlePrevClick}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-md hover:bg-gray-600 transition-colors"
+        disabled={productIndex === 0}
+        style={{ zIndex: 10 }}
+      >
+        &lt;
+      </button>
+      <div className="flex transition-transform duration-700 ease-in-out">
+        {displayedProducts.map(product => (
+          <div
+            key={product.name}
+            className="relative flex-none w-full sm:w-1/2 lg:w-1/4 px-4 group"
+          >
+            <div className="bg-white p-4 rounded-lg shadow-lg transition relative overflow-hidden">
+              <div className="absolute top-4 animate-pulse left-4 bg-red-700 text-white text-sm font-bold px-2 py-1 rounded-full">
+                Sale
+              </div>
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out group-hover:scale-110"
+              />
+              <h3 className="text-lg font-bold mb-2">{product.name}</h3>
+              <div className='flex mb-4 space-x-2'>
+                <p className="text-yellow-400">{product.rating}</p>
+                <p className="mt-1 text-gray-500 text-sm">{product.sold} sold</p>
+              </div>
+              <div className='flex flex-row gap-4'>
+                <p className="text-lg font-bold mb-2">{product.price}</p>
+                <p className="text-sm line-through font-light mb-2">{product.price2}</p>
+              </div>
+              <div className="absolute bg-white bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="flex justify-between">
+                  <button onClick={() => addToCart(product)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                    <FaCartPlus className='text-blue-500 text-3xl' />
+                  </button>
+                  <button onClick={() => handleModalOpen(product)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                    <FaEye className='text-green-500 text-3xl' />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <button
+        onClick={handleNextClick}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-md hover:bg-gray-600 transition-colors"
+        disabled={productIndex >= products.length - itemsToShow}
+        style={{ zIndex: 10 }}
+      >
+        &gt;
+      </button>
+    </div>
+  </section>
+
+  <section id="NewArrivals" className="px-4 sm:px-8 lg:px-16 mt-8">
+    <h2 className="text-3xl font-bold mb-6 text-left">New Arrivals</h2>
+    <div className="relative overflow-hidden">
+      <button
+        onClick={handleNewArrivalsPrevClick}
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full z-10"
+        disabled={newProductIndex === 0}
+        style={{ zIndex: 10 }}
+      >
+        &lt;
+      </button>
+      <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${newProductIndex * (100 / itemsToShow)}%)` }}>
+        {displayedNewArrivals.map(newproduct => (
+          <div
+            key={newproduct.title}
+            className="flex-none w-full sm:w-1/2 lg:w-1/4 px-4 group relative"
+          >
+            <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition relative overflow-hidden">
+              <div className="absolute top-4 animate-pulse left-4 bg-red-700 text-white text-sm font-bold px-2 py-1 rounded-full">
+                New
+              </div>
+              <img
+                src={newproduct.image}
+                alt={newproduct.title}
+                className="w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out group-hover:scale-110"
+              />
+              <h3 className="text-lg font-bold mb-2">{newproduct.title}</h3>
+              <p className="text-lg font-bold mb-2">{newproduct.price}</p>
+              <p className="text-sm line-through font-light mb-2">{newproduct.oldPrice}</p>
+              <div className="absolute bg-white bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="flex justify-between">
+                  <button onClick={() => addToCart(newproduct)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                    <FaCartPlus className='text-blue-500 text-3xl' />
+                  </button>
+                  <button onClick={() => handleNewArrivalsModalOpen(newproduct)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                    <FaEye className='text-green-500 text-3xl' />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <button
+        onClick={handleNewArrivalsNextClick}
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full z-10"
+        disabled={newProductIndex >= newproduct.length - itemsToShow}
+        style={{ zIndex: 10 }}
+      >
+        &gt;
+      </button>
+    </div>
+  </section>
+</div>
+
   );
 };
 

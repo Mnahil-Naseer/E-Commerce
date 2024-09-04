@@ -213,7 +213,6 @@ const Men = () => {
     setCurrentSlide(0);
   };
   return (
-    <Link to="men">
     <div className="p-4">
       {/* Main Banner Section */}
       <section className="relative h-screen mb-16 border-8 border-black flex items-center overflow-hidden">
@@ -382,7 +381,6 @@ const Men = () => {
       )}
 
     </div>
-    </Link>
   );
 };
 

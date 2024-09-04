@@ -55,7 +55,14 @@ const Header = () => {
         ref={ref}
         className="container mx-auto flex items-center justify-between h-full px-4 md:px-8"
       >
-        <Link to="/">
+        {/* Mobile Navigation Toggle */}
+        <div className="md:hidden flex items-center">
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <HiMenu className="text-3xl" />
+          </button>
+        </div>
+
+        <Link to="/" className="mx-auto md:mx-0">
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 100 },
@@ -113,39 +120,9 @@ const Header = () => {
           </nav>
         </motion.div>
 
-        {/* Mobile Navigation Toggle */}
-        <div className="md:hidden flex items-center">
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            <HiMenu className="text-3xl" />
-          </button>
-        </div>
-
-        {/* Mobile Navigation Menu */}
-        {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-gray-300 p-4 z-20 md:hidden">
-            <nav className="flex flex-col space-y-4">
-              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
-                Home
-              </Link>
-              <Link to="/#Home" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
-                Collections
-              </Link>
-              <Link to="/#BigSave" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
-                Big Save
-              </Link>
-              <Link to="/#NewArrivals" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
-                New Arrivals
-              </Link>
-              <Link to="/#Footer" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
-                Contact Us
-              </Link>
-            </nav>
-          </div>
-        )}
-
         <motion.div
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="cursor-pointer animate-slideDown flex relative"
+          className="cursor-pointer animate-slideDown flex relative md:ml-4"
           variants={{
             hidden: { opacity: 0, x: 100 },
             visible: { opacity: 1, x: 1 },
@@ -180,7 +157,7 @@ const Header = () => {
 
         <motion.div
           onClick={() => setIsOpen(!isOpen)}
-          className="cursor-pointer flex relative animate-bounce ml-4"
+          className="cursor-pointer flex relative animate-bounce md:ml-4"
           variants={{
             hidden: { opacity: 0, x: -100 },
             visible: { opacity: 1, x: 1 },
@@ -199,6 +176,38 @@ const Header = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+  <div className="absolute top-12 left-0 right-0 bg-gray-300 p-4 w-full h-72 z-20 md:hidden">
+    <div className="relative mb-4">
+      <input
+        type="text"
+        className="rounded-full pl-10 pr-4 py-1 text-black shadow-lg focus:outline-none focus:shadow-outline w-full"
+        placeholder="Search..."
+      />
+      <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
+    </div>
+    <nav className="flex flex-col space-y-4">
+      <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+        Home
+      </Link>
+      <Link to="/#Home" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+        Collections
+      </Link>
+      <Link to="/#BigSave" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+        Big Save
+      </Link>
+      <Link to="/#NewArrivals" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+        New Arrivals
+      </Link>
+      <Link to="/#Footer" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-gray-700 cursor-pointer">
+        Contact Us
+      </Link>
+    </nav>
+  </div>
+)}
+
     </header>
   );
 };

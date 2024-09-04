@@ -216,7 +216,6 @@ const Women = () => {
   };
 
   return (
-    <Link to="women">
     <div className="p-4">
       {/* Main Banner Section */}
       <section className="relative h-screen mb-16 border-8 border-[#fab790] flex items-center overflow-hidden">
@@ -388,7 +387,6 @@ const Women = () => {
         </div>
       )}
     </div>
-    </Link>
   );
 };
 

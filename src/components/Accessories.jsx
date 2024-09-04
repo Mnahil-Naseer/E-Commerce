@@ -217,7 +217,6 @@ const Accessories = () => {
   };
 
   return (
-    <Link to="accessories">
     <div className="p-4">
       {/* Main Banner Section */}
       <section className="relative h-screen mb-16 border-8 border-[#08465c] flex items-center overflow-hidden">
@@ -392,7 +391,6 @@ const Accessories = () => {
         </div>
       )}
     </div>
-    </Link>
   );
 };
 
