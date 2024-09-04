@@ -260,10 +260,10 @@ const Home = () => {
 
   <section id="ShoppingBenefits" className="py-8">
     <div className="container px-4 sm:px-8 lg:px-16">
-      <div className="flex flex-wrap gap-6 lg:gap-10 justify-between">
+      <div className="flex flex-wrap md:flex-row gap-6 lg:gap-10 justify-between">
         <div className="flex flex-col lg:flex-row items-center w-full">
           <h2 className="text-xl font-bold mb-4 lg:mb-0 lg:text-2xl">Better choices, Better prices</h2>
-          <div className="flex flex-wrap gap-6 lg:gap-10 w-full lg:w-auto">
+          <div className="flex flex-col md:flex-row gap-6 lg:gap-5 w-full lg:w-auto">
             <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
               <FaDollarSign className='text-3xl' />
               <h3 className="text-xs lg:text-sm font-bold">Value-for-money</h3>
@@ -295,23 +295,23 @@ const Home = () => {
     </div>
   </section>
 
-  <section id="Home" className="px-4 sm:px-8 lg:px-16">
+  <section id="Home" className="px-4 sm:px-8 lg:px-12">
     <div className="relative">
       <div className="flex flex-wrap gap-6 justify-between">
         {categories.map(({ to, image, label }) => (
           <Link
             to={to}
             key={label}
-            className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-4"
+            className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/6 p-2"
           >
             <div
-              className="relative flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-600 hover:animate-zoomOut transition"
+              className="relative mx-20 md:-mx-6 flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-600 hover:animate-zoomOut transition"
               style={{
                 backgroundImage: `url('${image}')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 height: '320px',
-                width: '100%', // Adjusted to be responsive
+                width: '230px', // Adjusted to be responsive
               }}
             >
               <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div>

@@ -308,6 +308,7 @@ const HomeAppliances = () => {
               className="w-full h-24 sm:h-32 md:h-36 lg:h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
             />
             <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
+            <p className='text-yellow-300'>{product.rating}★★★★☆</p>
             <p className="text-base font-bold">${product.price.toFixed(2)}</p>
 
             {/* Hover effects */}
@@ -329,12 +330,12 @@ const HomeAppliances = () => {
   </div>
 
   <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold mt-16 mb-10">Home Appliances</h1>
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 mb-8">
     {products.length > 0 ? (
       products.map(product => (
         <div
           key={product.id}
-          className="relative border p-4 h-auto w-40 sm:w-48 md:w-56 lg:w-64 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+          className="relative border p-4 h-auto w-48 sm:w-56 md:w-64 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
         >
           <img
             src={product.image}
@@ -342,6 +343,7 @@ const HomeAppliances = () => {
             className="w-full h-24 sm:h-32 md:h-36 lg:h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
           />
           <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
+          <p className='text-yellow-300'>{product.rating}★★★★☆</p>
           <p className="text-base font-bold">${product.price.toFixed(2)}</p>
 
           {/* Hover effects */}
