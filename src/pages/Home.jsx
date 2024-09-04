@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import necklace1 from '../assets/img/necklace1.jpg';
 import { Link } from 'react-router-dom';
-import Hero from '../components/Hero';
 import collection from '../assets/img/collection.jpg';
 import fashion from '../assets/img/fashion.jpg';
 import p2 from '../assets/img/p2.jpg';
+import banner from '../assets/img/banner1.jpg';
 import men1 from '../assets/img/men1.jpg';
 import p15 from '../assets/img/p15.jpg';
 import men15 from '../assets/img/men15.jpg';
@@ -301,15 +301,16 @@ const Home = () => {
               <Link
                 to={to}
                 key={label}
-                className="flex-none w-full sm:w-1/2 lg:w-1/5 p-2" // Adjusted to show all five categories in one row
+                className="flex-none w-full sm:w-1/2 lg:w-1/5 p-6" // Adjusted to show all five categories in one row
               >
                 <div
-                  className="relative flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-400 transition"
+                  className="relative flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-600 hover:animate-zoomOut transition"
                   style={{
                     backgroundImage: `url('${image}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    height: '350px', // Increased height for larger display
+                    height: '320px',
+                    width: '220px', // Increased height for larger display
                   }}
                 >
                   <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div>
@@ -317,7 +318,7 @@ const Home = () => {
                     <h3 className="text-xl font-semibold text-white mb-2">{label}</h3>
                     <Link
                       to={to}
-                      className="inline-block bg-white text-black px-4 py-2 rounded hover:bg-gray-300 transition"
+                      className="inline-block bg-white text-black px-4 py-2 rounded hover:bg-gray-400 hover:border hover:border-b-red-700 hover:border-l-red-700 hover:border-t-gray-900 hover:border-r-gray-900 transition"
                     >
                       Details
                     </Link>
@@ -492,13 +493,35 @@ const Home = () => {
     </div>
   );
 };
+
 export const MainBanner = () => {
   return (
-    <section className="relative bg-fixed bg-cover bg-center h-screen flex items-center justify-center text-white">
-      <div className="absolute inset-0 bg-black opacity-50"></div> {/* Optional overlay */}
-      <div className="relative z-10 text-center p-8">
-        <h1 className="text-4xl md:text-6xl font-bold">Welcome to Our Site</h1>
-        <p className="mt-4 text-lg md:text-xl">Experience the best products and services</p>
+    <section className="relative bg-cover bg-center h-screen flex items-center justify-start text-white overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-black opacity-80" 
+        style={{ 
+          backgroundImage: `url('${banner}')`, 
+          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover'
+        }}
+      ></div> 
+      <div className="relative z-10 text-start mx-5 text-black">
+        <h1 className="text-4xl md:text-5xl font-extrabold font-serif mb-4">
+          Embrace the Chill in Style
+        </h1>
+        <p className="mt-4 text-lg md:text-xl text-gray-800 font-semibold mb-2">
+          Uncover our exclusive winter collection and stay warm with the latest trends.<br/> Discover cozy layers and chic designs perfect for every winter occasion.
+        </p>
+        <h2 className='font-sans animate-pulse font-extrabold text-red-700'>
+          25% OFF On All Products
+        </h2>
+        <a 
+          href="#Home" 
+          className="mt-6 inline-block px-6 py-3 border-2 hover:border-gray-700 text-white font-semibold text-lg rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+        >
+          Shop Now
+        </a>
       </div>
     </section>
   );
