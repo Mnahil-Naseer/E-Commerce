@@ -17,6 +17,7 @@ import women10 from '../assets/img/women10.jpg';
 import women11 from '../assets/img/women11.jpg';
 import women12 from '../assets/img/women12.jpg';
 import { CartContext } from '../contexts/CartContext';
+import banner from '../assets/img/banner3.jpg'
 export const Womenproducts = [
   {
     id: uuidv4(),
@@ -172,12 +173,12 @@ export const Womenproducts = [
 export const TopSellingProducts = Womenproducts.filter(product => product.rating >= 4.5);
 
 const Women = () => {
-  const [products] = useState(Womenproducts);
-  const [topSelling] = useState(TopSellingProducts);
+  const [products, setproducts] = useState(Womenproducts);
+  const [topSelling, settopSelling] = useState(TopSellingProducts);
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { addToCart } = useContext(CartContext);
-
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleNextSlide = () => {
@@ -199,24 +200,78 @@ const Women = () => {
     setIsModalOpen(false);
     setSelectedProduct(null);
   };
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+
+    // Filter top-selling products
+    const filteredTopSelling = category === 'All' ? TopSellingProducts : TopSellingProducts.filter(product => product.subcategory === category);
+    settopSelling(filteredTopSelling);
+
+    // Filter accessories products
+    const filteredProducts = category === 'All' ? Womenproducts : Womenproducts.filter(product => product.subcategory === category);
+    setproducts(filteredProducts);
+
+    setCurrentSlide(0);
+  };
 
   return (
     <div className="p-4">
       {/* Main Banner Section */}
-      <div className="bg-cover bg-center h-64 mb-8" style={{ backgroundImage: `url(${fashion})` }}>
-        <div className="flex justify-center items-center h-full bg-black bg-opacity-50">
-          <h1 className="text-4xl text-white font-bold">Women's Fashion</h1>
+      <section className="relative h-screen mb-16 border-8 border-[#08465c] flex items-center overflow-hidden">
+      <div className="flex-1 flex justify-center items-center p-5">
+          <img
+            src={banner}
+            alt="Women's Fashion"
+            className="w-[450px] h-screen max-w-md object-cover"
+          />
         </div>
+        <div className="flex-1 flex flex-col justify-center p-5 text-black">
+          <h1 className="text-4xl md:text-5xl font-extrabold font-serif mb-4">
+            Discover the Latest in Women's Fashion
+          </h1>
+          <p className="mt-3 text-lg md:text-xl text-gray-800 font-semibold mb-6">
+            Embrace style and elegance with our exclusive collection of women's fashion.<br />
+            From sophisticated dresses to chic accessories, find the perfect pieces to elevate your wardrobe and make a statement.
+          </p>
+          <a
+            href="#products"
+            className="px-5 py-3 border-2 border-black text-black font-semibold text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
+          >
+            Shop the Collection
+          </a>
+        </div>
+      </section>
+
+      {/* Category Buttons */}
+      <div className="mb-6 flex justify-center space-x-4">
+        <button
+          onClick={() => handleCategoryChange('All')}
+          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          All
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Formal')}
+          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Formal' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Formal
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Casual')}
+          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Casual' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Casual
+        </button>
       </div>
 
-      <h2 className="text-2xl font-bold mb-10">Top Selling Products</h2>
+      <h2 id="products" className="text-3xl font-extrabold mb-10 font-serif">Top Selling Products</h2>
 
       {/* Carousel */}
-      <div className="relative">
+      <div className="relative mb-16">
         <button
           onClick={handlePrevSlide}
           className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={currentSlide===0}
+          disabled={currentSlide === 0}
         >
           <FaChevronLeft />
         </button>
@@ -232,7 +287,7 @@ const Women = () => {
         <div className="overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-300 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100/5}%)` }}
+            style={{ transform: `translateX(-${currentSlide * 100 / 5}%)` }}
           >
             {topSelling.map(product => (
               <div
@@ -266,7 +321,7 @@ const Women = () => {
       </div>
 
       {/* Women Fashion Products */}
-      <h1 className="text-2xl font-bold mb-4">Women Fashion</h1>
+      <h1 className="text-3xl font-extrabold mb-6">Women Fashion</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-8">
         {products.length > 0 ? (
           products.map(product => (

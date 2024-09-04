@@ -330,7 +330,7 @@ const Home = () => {
         </div>
       </section>
       <section id="BigSave" className="px-4 sm:px-8 lg:px-16 mt-8 relative">
-        <h2 className="text-3xl font-bold mb-6 text-center">Big Save</h2>
+        <h2 className="text-3xl font-bold mb-6 text-left">Big Save</h2>
         <div className="relative overflow-hidden">
           {/* Previous Button */}
           <button
@@ -395,7 +395,7 @@ const Home = () => {
         </div>
       </section>
       <section id="NewArrivals" className="px-4 sm:px-8 lg:px-16 mt-8">
-        <h2 className="text-3xl font-bold mb-6 text-center">New Arrivals</h2>
+        <h2 className="text-3xl font-bold mb-6 text-left">New Arrivals</h2>
         <div className="relative overflow-hidden">
           {/* Previous Button */}
           <button

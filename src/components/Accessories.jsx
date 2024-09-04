@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import React,{useState, useContext} from 'react';
-import { FaCartPlus, FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa'; 
+import React, { useState, useContext } from 'react';
+import { FaCartPlus, FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import girls2 from '../assets/img/girls2.jpg';
 import girls1 from '../assets/img/girls1.jpg';
 import earings4 from '../assets/img/earings4.jpg';
@@ -17,7 +17,7 @@ import ring6 from '../assets/img/ring6.jpg';
 import ring5 from '../assets/img/ring5.jpg';
 import earings5 from '../assets/img/earings5.jpg';
 import { CartContext } from '../contexts/CartContext';
-
+import banner from '../assets/img/banner2.jpg';
 export const AccessoriesProducts = [
   {
     id: uuidv4(),
@@ -173,21 +173,24 @@ export const AccessoriesProducts = [
 export const TopSellingProducts = AccessoriesProducts.filter(product => product.rating >= 4.5);
 
 const Accessories = () => {
-  const [products] = useState(AccessoriesProducts);
-  const [topSelling] = useState(TopSellingProducts);
+  const [products, setProducts] = useState(AccessoriesProducts);
+  const [topSelling, setTopSelling] = useState(TopSellingProducts);
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const { addToCart } = useContext(CartContext); 
+  const { addToCart } = useContext(CartContext);
   const [currentSlide, setCurrentSlide] = useState(0);
+
   const handleNextSlide = () => {
     setCurrentSlide((prev) =>
-      Math.min(prev + 1, topSelling.length - 1)
+      Math.min(prev + 1, Math.max(topSelling.length - 5, 0))
     );
   };
 
   const handlePrevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + topSelling.length) % topSelling.length);
   };
+
   const handleModalOpen = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
@@ -198,22 +201,89 @@ const Accessories = () => {
     setSelectedProduct(null);
   };
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+
+    // Filter top-selling products
+    const filteredTopSelling = category === 'All' ? TopSellingProducts : TopSellingProducts.filter(product => product.subcategory === category);
+    setTopSelling(filteredTopSelling);
+
+    // Filter accessories products
+    const filteredProducts = category === 'All' ? AccessoriesProducts : AccessoriesProducts.filter(product => product.subcategory === category);
+    setProducts(filteredProducts);
+
+    setCurrentSlide(0); // Reset the carousel to the first slide when category changes
+  };
+
   return (
     <div className="p-4">
       {/* Main Banner Section */}
-      <div className="bg-cover bg-center h-64 mb-8" style={{ backgroundImage: `url(${girls1})` }}>
-        <div className="flex justify-center items-center h-full bg-black bg-opacity-50">
-          <h1 className="text-4xl text-white font-bold">Accessories</h1>
+      <section className="relative h-screen mb-16 border-8 border-[#08465c] flex items-center overflow-hidden">
+        <div className="flex-1 flex flex-col justify-center p-5 text-black">
+          <h1 className="text-4xl md:text-5xl font-extrabold font-serif mb-4">
+            Elevate Your Style with Accessories
+          </h1>
+          <p className="mt-3 text-lg md:text-xl text-gray-800 font-semibold mb-6">
+            Explore our curated collection of accessories designed to complement any outfit.<br />
+            From elegant jewelry to chic handbags, find the perfect finishing touches to enhance your look.
+          </p>
+          <a
+            href="#products"
+            className="px-5 py-3 border-2 border-black text-black font-semibold text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
+          >
+            Shop Now
+          </a>
         </div>
+        <div className="flex-1 flex justify-center items-center p-5">
+          <img
+            src={banner}
+            alt="Elegant Accessories"
+            className="w-full h-auto max-w-md object-cover"
+          />
+        </div>
+      </section>
+      {/* Category Buttons */}
+      <div className="mb-6 flex justify-center space-x-4">
+        <button
+          onClick={() => handleCategoryChange('All')}
+          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          All
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Watches')}
+          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Watches' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Watches
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Earrings')}
+          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Earrings' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Earrings
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Necklaces')}
+          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Necklaces' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Necklaces
+        </button>
+        <button
+          onClick={() => handleCategoryChange('Rings')}
+          className={`px-4 py-2 border-2 rounded-lg ${selectedCategory === 'Rings' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+        >
+          Rings
+        </button>
       </div>
-      <h2 className="text-2xl font-bold mb-10">Top Selling Products</h2>
-      
+
+      <h2 id="products" className="text-3xl font-extrabold mb-10 font-serif">Top Selling Products</h2>
+
       {/* Carousel */}
-      <div className="relative">
-      <button
+      <div className="relative mb-16">
+        <button
           onClick={handlePrevSlide}
           className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={currentSlide===0}
+          disabled={currentSlide === 0}
         >
           <FaChevronLeft />
         </button>
@@ -225,11 +295,11 @@ const Accessories = () => {
         >
           <FaChevronRight />
         </button>
-        
+
         <div className="overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-300 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100/5}%)` }}
+            style={{ transform: `translateX(-${currentSlide * 100 / 5}%)` }}
           >
             {topSelling.map(product => (
               <div
@@ -246,85 +316,79 @@ const Accessories = () => {
 
                 {/* Hover effects */}
                 <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-                <button
-                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                  onClick={() => addToCart(product)} // Add to Cart
-                >
-                  <FaCartPlus />
-                </button>
-                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                  <FaEye />
-                </button>
-              </div>
+                  <button
+                    className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                    onClick={() => addToCart(product)} // Add to Cart
+                  >
+                    <FaCartPlus />
+                  </button>
+                  <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                    <FaEye />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <h1 className="text-2xl font-bold mb-4">Accessories</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 mb-8">
-        {products.length > 0 ? (
-          products.map(product => (
-            <div 
-              key={product.id} 
-              className="relative border p-4 h-auto w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
-            >
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
-              />
-              <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
-              <div className='flex space-x-4'><p className="text-base font-bold">${product.price.toFixed(2)}</p>
-              <h3 className="text-sm font-semibold">{product.rating}⭐</h3></div>
 
-              {/* Hover effects */}
-              <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-                <button 
-                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                  onClick={() => addToCart(product)} // Add to Cart
-                >
-                  <FaCartPlus />
-                </button>
-                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                  <FaEye />
-                </button>
-              </div>
+      <h1 className="text-3xl font-extrabold mb-6">Accessories</h1>
+
+      {/* Accessories Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {products.map(product => (
+          <div key={product.id} className="relative border p-4 rounded-lg shadow-lg overflow-hidden group">
+            <img
+              src={product.image}
+              alt={product.title}
+              className="w-full h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
+            />
+            <h2 className="text-sm font-semibold mb-1">{product.title}</h2>
+            <p className="text-base font-bold">${product.price.toFixed(2)}</p>
+
+            {/* Hover effects */}
+            <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+              <button
+                className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                onClick={() => addToCart(product)} // Add to Cart
+              >
+                <FaCartPlus />
+              </button>
+              <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                <FaEye />
+              </button>
             </div>
-          ))
-        ) : (
-          <p>No products found.</p>
-        )}
+          </div>
+        ))}
       </div>
-{/* Modal for product details */}
-{isModalOpen && selectedProduct && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-    <div className="bg-violet-200 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
-      <button
-        onClick={handleModalClose}
-        className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
-      >
-        <span className="text-3xl">&times;</span>
-      </button>
-      <h2 className="text-xl sm:text-2xl font-semibold mb-4">{selectedProduct.title}</h2>
-      <img className="w-26 h-36 sm:h-48 md:h-56 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
-      <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
-      <div className="flex flex-col sm:flex-row justify-between items-center">
-        <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
-        <h3 className="text-sm font-semibold">{selectedProduct.rating}⭐</h3>
-      </div>
-      <button
-        onClick={() => {
-          addToCart(selectedProduct);
-          handleModalClose();
-        }}
-        className="mt-4 bg-violet-300 hover:bg-violet-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600 "
-      >
-        Add to Cart
-      </button>
-    </div>
-  </div>
-)}
+
+      {/* Modal for product details */}
+      {isModalOpen && selectedProduct && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
+          <div className="bg-white p-4 rounded-lg w-full max-w-lg relative">
+            <button
+              className="absolute top-2 right-2 text-xl font-bold"
+              onClick={handleModalClose}
+            >
+              &times;
+            </button>
+            <h2 className="text-2xl font-bold mb-4">{selectedProduct.title}</h2>
+            <img
+              src={selectedProduct.image}
+              alt={selectedProduct.title}
+              className="w-full h-64 object-cover mb-4"
+            />
+            <p className="text-lg mb-4">{selectedProduct.description}</p>
+            <p className="text-xl font-bold mb-4">${selectedProduct.price.toFixed(2)}</p>
+            <button
+              onClick={() => addToCart(selectedProduct)}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
