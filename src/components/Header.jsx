@@ -28,11 +28,6 @@ const Header = () => {
     }
   }, [isInView, mainControls]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", () =>
-      window.scrollY > 60 ? setIsActive(true) : setIsActive(false)
-    );
-  }, []);
 
   const handleLogout = () => {
     logout();
@@ -45,9 +40,7 @@ const Header = () => {
 
   return (
     <header
-      className={`${isActive ? "bg-[#3a92a4] shadow-2xl shadow-gray-500" : "bg-white text-black font-semibold bg-opacity-20 shadow-2xl"
-        } fixed w-full z-20 transition-all duration-300`}
-    >
+      className="bg-gray-300 text-black font-semibold shadow-2xl  w-full z-20 transition-all duration-300">
       <div
         ref={ref}
         className="container mx-auto flex items-center justify-between h-full px-4 md:px-8"

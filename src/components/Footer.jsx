@@ -16,7 +16,7 @@ const Footer = () => {
   };
 
   return (
-    <footer id="Footer" className="relative py-9 mt-14 bg-[#3a92a4] text-white">
+    <footer id="Footer" className="relative py-5 mt-14 bg-gray-300 text-black">
       <div className="relative container mx-auto flex flex-wrap justify-between">
         <div className="w-full md:w-1/4 mt-16 md:mb-0">
           <h1>E-Mart</h1>

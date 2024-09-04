@@ -6,7 +6,8 @@ import { CartContext } from "../contexts/CartContext";
 const CartItem = ({ item }) => {
   const { removeFromCart, increaseAmount, decreaseAmount } = useContext(CartContext);
   const { id, title, image, price, amount } = item;
-
+  const numericPrice = Number(price);
+  const itemTotalPrice = numericPrice * amount;
   return (
     <div className="flex flex-col md:flex-row gap-x-4 py-4 border-b border-gray-300 w-full font-light text-gray-700">
       <div className="w-full md:w-auto min-h-[150px] flex items-center gap-x-4">
@@ -52,7 +53,7 @@ const CartItem = ({ item }) => {
           </div>
           {/* Item Price */}
           <div className="flex flex-1 justify-around items-center text-gray-700">
-            ${price.toFixed(2)}
+            ${numericPrice.toFixed(2)}
           </div>
           {/* Final Price */}
           <div className="flex flex-1 justify-end items-center text-gray-900 font-semibold">

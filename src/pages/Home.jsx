@@ -27,6 +27,7 @@ import { FaCartPlus, FaEye } from 'react-icons/fa';
 import { CartContext } from '../contexts/CartContext';
 import women6 from '../assets/img/women6.jpg';
 import p8 from '../assets/img/p8.jpg';
+import men11 from '../assets/img/men11.jpg';
 const categories = [
   { to: "/components/Accessories", image: cover, label: "Accessories" },
   { to: "/components/women", image: cover2, label: "Women's Clothing" },
@@ -163,7 +164,7 @@ const newarrivals = [
     category: 'Men Clothing',
     subcategory: 'Casual',
     rating: "2.4",
-    title: 'Full Sleeve Denim Jacket Brown',
+    title: 'Full Sleeve Denim Jacket ',
     price: 987.00,
     description: 'A denim jacket for casual outings.'
   },
@@ -183,21 +184,33 @@ const newarrivals = [
     category: 'Decoratives',
     subcategory: 'Clocks',
     rating: "4.7",
-    title: 'Vintage Rose Gold Wall Clock',
+    title: 'Vintage Rose Wall Clock',
     price: 270.00,
     description: 'A stylish rose gold wall clock with a vintage design that complements any interior decor.'
+  },
+  {
+    id: uuidv4(),
+    image: men11,
+    category: 'Men Clothing',
+    subcategory: 'Casual',
+    rating: "5.0",
+    title: 'Black Denim Jacket',
+    price: 432.00,
+    description: 'A black denim jacket for casual outings.'
   }
 ];
 const Home = () => {
   const [product] = useState(products);
   const [newproduct] = useState(newarrivals);
   const [productIndex, setProductIndex] = useState(0);
+  const [newProductIndex, setNewProductIndex] = useState(0); // New state for New Arrivals
   const [categoryIndex, setCategoryIndex] = useState(0);
-  const itemsToShow = 5; // Number of products to show per page
+  const itemsToShow = 4; // Number of products to show per page
   const autoScrollInterval = 3000;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const { addToCart } = useContext(CartContext); // Interval time in milliseconds
+  const { addToCart } = useContext(CartContext);
+
   const handleModalOpen = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
@@ -207,6 +220,7 @@ const Home = () => {
     setIsModalOpen(false);
     setSelectedProduct(null);
   };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCategoryIndex((prevIndex) =>
@@ -227,11 +241,22 @@ const Home = () => {
     );
   };
 
+  const handleNewArrivalsPrevClick = () => {
+    setNewProductIndex((prevIndex) => Math.max(prevIndex - itemsToShow, 0));
+  };
+
+  const handleNewArrivalsNextClick = () => {
+    setNewProductIndex((prevIndex) =>
+      Math.min(prevIndex + itemsToShow, newproduct.length - itemsToShow)
+    );
+  };
+
   const displayedProducts = products.slice(productIndex, productIndex + itemsToShow);
-  const newarrival = newarrivals.slice(productIndex, productIndex + itemsToShow);
+  const displayedNewArrivals = newproduct.slice(newProductIndex, newProductIndex + itemsToShow);
+
   return (
     <div>
-      <Hero />
+      <MainBanner />
       <section id="ShoppingBenefits" className="py-8 ">
         <div className="container  px-4 sm:px-8 lg:px-16">
           <div className="flex flex-row gap-10 justify-between ">
@@ -270,128 +295,167 @@ const Home = () => {
       </section>
 
       <section id="Home" className="px-4 sm:px-8 lg:px-16">
-        <div className="relative overflow-hidden">
-          <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${categoryIndex * 100 / 15}%)` }}
-          >
+        <div className="relative">
+          <div className="flex flex-wrap justify-between">
             {categories.map(({ to, image, label }) => (
-              <Link to={to} key={label} className="flex-none w-full sm:w-1/2 lg:w-1/4 p-2">
+              <Link
+                to={to}
+                key={label}
+                className="flex-none w-full sm:w-1/2 lg:w-1/5 p-2" // Adjusted to show all five categories in one row
+              >
                 <div
-                  className="relative flex flex-col items-center justify-center bg-gray-200 text-center p-4 rounded-lg  hover:shadow-xl hover:shadow-gray-400 transition"
+                  className="relative flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-400 transition"
                   style={{
                     backgroundImage: `url('${image}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    height: '300px',
+                    height: '350px', // Increased height for larger display
                   }}
                 >
                   <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div>
-                  <h3 className="relative text-xl font-semibold text-white mt-2">{label}</h3>
+                  <div className="relative w-full p-4">
+                    <h3 className="text-xl font-semibold text-white mb-2">{label}</h3>
+                    <Link
+                      to={to}
+                      className="inline-block bg-white text-black px-4 py-2 rounded hover:bg-gray-300 transition"
+                    >
+                      Details
+                    </Link>
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
-      <section id="BigSave" className="px-4 sm:px-8 lg:px-16 mt-8">
+      <section id="BigSave" className="px-4 sm:px-8 lg:px-16 mt-8 relative">
         <h2 className="text-3xl font-bold mb-6 text-center">Big Save</h2>
         <div className="relative overflow-hidden">
+          {/* Previous Button */}
           <button
             onClick={handlePrevClick}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-md hover:bg-gray-600 transition-colors"
             disabled={productIndex === 0}
+            style={{ zIndex: 10 }}
           >
             &lt;
           </button>
+
+          {/* Products Container */}
           <div className="flex transition-transform duration-700 ease-in-out">
             {displayedProducts.map(product => (
               <div
                 key={product.name}
-                className="flex-none w-full sm:w-1/2 lg:w-1/4 px-4"
+                className="relative flex-none w-full sm:w-1/2 lg:w-1/4 px-4 group"
               >
-                <div
-                  className="bg-white p-4  rounded-lg shadow-lg hover:shadow-xl transition"
-                >
+                <div className="bg-white p-4 rounded-lg shadow-lg transition relative overflow-hidden">
+                  <div className="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded-full">
+                    Sale
+                  </div>
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-48 object-cover mb-4"
+                    className="w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out group-hover:scale-110"
                   />
                   <h3 className="text-lg font-bold mb-2">{product.name}</h3>
-                  <div className='flex mb-4 space-x-2'><p className="text-yellow-400 ">{product.rating}</p><p className="mt-1 text-gray-500 text-sm">{product.sold} sold</p></div>
-                  <div className='flex flex-row gap-4'><p className="text-lg font-bold mb-2">{product.price}</p>
-                    <p className="text-sm line-through font-light mb-2">{product.price2}</p></div>
-                </div>
-                <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-                  <button
-                    className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                    onClick={() => addToCart(product)}
-                  >
-                    <FaCartPlus />
-                  </button>
-                  <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                    <FaEye />
-                  </button>
+                  <div className='flex mb-4 space-x-2'>
+                    <p className="text-yellow-400">{product.rating}</p>
+                    <p className="mt-1 text-gray-500 text-sm">{product.sold} sold</p>
+                  </div>
+                  <div className='flex flex-row gap-4'>
+                    <p className="text-lg font-bold mb-2">{product.price}</p>
+                    <p className="text-sm line-through font-light mb-2">{product.price2}</p>
+                  </div>
+                  {/* Hover icons */}
+                  <div className="absolute bg-white bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex justify-between">
+                      <button onClick={() => addToCart(product)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                        <FaCartPlus className='text-blue-500 text-3xl' />
+                      </button>
+                      <button onClick={() => handleModalOpen(product)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                        <FaEye className='text-green-500 text-3xl' />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Next Button */}
           <button
             onClick={handleNextClick}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full shadow-md hover:bg-gray-600 transition-colors"
             disabled={productIndex >= products.length - itemsToShow}
+            style={{ zIndex: 10 }}
           >
             &gt;
           </button>
         </div>
       </section>
       <section id="NewArrivals" className="px-4 sm:px-8 lg:px-16 mt-8">
-        <h2 className="text-3xl font-bold mb-6 text-center">NEw Arrivals</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">New Arrivals</h2>
         <div className="relative overflow-hidden">
+          {/* Previous Button */}
           <button
-            onClick={handlePrevClick}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
-            disabled={productIndex === 0}
+            onClick={handleNewArrivalsPrevClick}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full z-10"
+            disabled={newProductIndex === 0}
+            style={{ zIndex: 10 }}
           >
             &lt;
           </button>
-          <div className="flex transition-transform duration-700 ease-in-out">
-            {newarrival.map(newproduct => (
+
+          {/* Products Container */}
+          <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${newProductIndex * (100 / itemsToShow)}%)` }}>
+            {displayedNewArrivals.map(newproduct => (
               <div
                 key={newproduct.title}
-                className="flex-none w-full sm:w-1/2 lg:w-1/4 px-4"
+                className="flex-none w-full sm:w-1/2 lg:w-1/4 px-4 group relative"
               >
-                <div
-                  className="bg-white p-4  rounded-lg shadow-lg hover:shadow-xl transition"
-                >
+                <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition relative overflow-hidden">
+                  {/* New Tag */}
+                  <div className="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded-full">
+                    New
+                  </div>
+
                   <img
                     src={newproduct.image}
                     alt={newproduct.title}
-                    className="w-full h-48 object-cover mb-4"
+                    className="w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out group-hover:scale-110"
                   />
                   <h3 className="text-lg font-bold mb-2">{newproduct.title}</h3>
-                  <p className="text-red-700 ">{newproduct.rating}⭐</p>
-                  <p className="text-lg font-bold mb-2">{newproduct.price}</p>
-                </div>
-                <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
-                  <button
-                    className="bg-blue-500 text-white p-2 rounded-full mx-1"
-                    onClick={() => addToCart(product)}
-                  >
-                    <FaCartPlus />
-                  </button>
-                  <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
-                    <FaEye />
-                  </button>
+                  <p className="text-yellow-500">★★★★☆</p>
+                  <p className="text-lg font-bold mb-2">${newproduct.price}</p>
+
+                  {/* Hover Icons */}
+                  <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex justify-between">
+                      <button
+                        onClick={() => addToCart(newproduct)}
+                        className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition"
+                      >
+                        <FaCartPlus className="text-blue-500 text-3xl" />
+                      </button>
+                      <button
+                        onClick={() => handleModalOpen(newproduct)}
+                        className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition"
+                      >
+                        <FaEye className="text-green-500 text-3xl" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Next Button */}
           <button
-            onClick={handleNextClick}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
-            disabled={productIndex >= product.length - 1}
+            onClick={handleNewArrivalsNextClick}
+            className="absolute right-0 top-1/2 transform translate-y-1/2 bg-gray-700 text-white p-2 rounded-full z-10"
+            disabled={newProductIndex >= newarrivals.length - itemsToShow}
+            style={{ zIndex: 10 }}
           >
             &gt;
           </button>
@@ -399,7 +463,7 @@ const Home = () => {
       </section>
       {isModalOpen && selectedProduct && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-          <div className="bg-violet-200 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
+          <div className="bg-gray-300 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
             <button
               onClick={handleModalClose}
               className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
@@ -410,7 +474,7 @@ const Home = () => {
             <img className="w-26 h-36 sm:h-48 md:h-56 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
             <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
             <div className="flex flex-col sm:flex-row justify-between items-center">
-              <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
+              <h3 className="text-lg font-semibold">${selectedProduct.price}</h3>
               <h3 className="text-sm font-semibold">{selectedProduct.rating}⭐</h3>
             </div>
             <button
@@ -418,7 +482,7 @@ const Home = () => {
                 addToCart(selectedProduct);
                 handleModalClose();
               }}
-              className="mt-4 bg-violet-300 hover:bg-violet-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600"
+              className="mt-4 bg-blue-300 hover:bg-blue-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600"
             >
               Add to Cart
             </button>
@@ -428,5 +492,15 @@ const Home = () => {
     </div>
   );
 };
-
+export const MainBanner = () => {
+  return (
+    <section className="relative bg-fixed bg-cover bg-center h-screen flex items-center justify-center text-white">
+      <div className="absolute inset-0 bg-black opacity-50"></div> {/* Optional overlay */}
+      <div className="relative z-10 text-center p-8">
+        <h1 className="text-4xl md:text-6xl font-bold">Welcome to Our Site</h1>
+        <p className="mt-4 text-lg md:text-xl">Experience the best products and services</p>
+      </div>
+    </section>
+  );
+};
 export default Home;
