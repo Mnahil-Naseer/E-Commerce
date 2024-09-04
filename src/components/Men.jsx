@@ -356,7 +356,7 @@ const Men = () => {
   {/* Modal for product details */}
   {isModalOpen && selectedProduct && (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-      <div className="bg-violet-200 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
+      <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
         <button
           onClick={handleModalClose}
           className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
@@ -375,7 +375,7 @@ const Men = () => {
             addToCart(selectedProduct);
             handleModalClose();
           }}
-          className="mt-4 bg-violet-300 hover:bg-violet-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600 "
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600 "
         >
           Add to Cart
         </button>
