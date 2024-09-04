@@ -425,7 +425,7 @@ const Home = () => {
                   <button onClick={() => addToCart(newproduct)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
                     <FaCartPlus className='text-blue-500 text-3xl' />
                   </button>
-                  <button onClick={() => handleNewArrivalsModalOpen(newproduct)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                  <button onClick={() => handleModalOpen(newproduct)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
                     <FaEye className='text-green-500 text-3xl' />
                   </button>
                 </div>
@@ -445,7 +445,7 @@ const Home = () => {
     </div>
   </section>
   {isModalOpen && selectedProduct && (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur md:backdrop-blur-md">
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
         <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
           <button
             onClick={handleModalClose}
@@ -457,15 +457,12 @@ const Home = () => {
           <img className="w-24 h-36 sm:w-32 sm:h-48 md:w-40 md:h-56 lg:w-48 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
           <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
           <div className="flex flex-col sm:flex-row justify-between items-center">
-            <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
-            <h3 className="text-sm font-semibold">{selectedProduct.rating}⭐</h3>
+            <h3 className="text-lg font-semibold">${selectedProduct.price}</h3>
+            <h3 className="text-sm font-semibold text-yellow-300">{selectedProduct.rating}★★★★☆</h3>
           </div>
           <button
-            onClick={() => {
-              addToCart(selectedProduct);
-              handleModalClose();
-            }}
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600"
+            className="bg-blue-500 text-white p-2 rounded-full mt-4 sm:mt-0"
+            onClick={() => addToCart(selectedProduct)}
           >
             Add to Cart
           </button>

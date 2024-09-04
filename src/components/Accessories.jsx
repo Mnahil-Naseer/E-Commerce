@@ -344,7 +344,7 @@ const Accessories = () => {
   
     {/* Modal for product details */}
     {isModalOpen && selectedProduct && (
-      <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
         <div className="bg-white p-4 rounded-lg w-full max-w-lg relative">
           <button
             className="absolute top-2 right-2 text-xl font-bold"
@@ -356,13 +356,16 @@ const Accessories = () => {
           <img
             src={selectedProduct.image}
             alt={selectedProduct.title}
-            className="w-full h-48 md:h-64 object-cover mb-4"
+            className="w-72 h-48 md:h-64 object-cover mb-4"
           />
-          <p className="text-base md:text-lg mb-4">{selectedProduct.description}</p>
-          <p className="text-lg md:text-xl font-bold mb-4">${selectedProduct.price.toFixed(2)}</p>
+          <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
+          <div className="flex flex-col sm:flex-row justify-between mb-5 items-center">
+            <h3 className="text-lg font-semibold">${selectedProduct.price}</h3>
+            <h3 className="text-sm font-semibold text-yellow-600">{selectedProduct.rating}★★★★☆</h3>
+          </div>
           <button
+            className="bg-blue-500 text-white p-2 rounded-full mt-4 sm:mt-0"
             onClick={() => addToCart(selectedProduct)}
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold"
           >
             Add to Cart
           </button>

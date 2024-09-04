@@ -372,17 +372,14 @@ const Women = () => {
         <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
-          <h3 className="text-sm font-semibold">{selectedProduct.rating}⭐</h3>
+          <h3 className="text-sm font-semibold text-yellow-600">{selectedProduct.rating}★★★★☆</h3>
         </div>
         <button
-          onClick={() => {
-            addToCart(selectedProduct);
-            handleModalClose();
-          }}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded shadow-xl hover:shadow-gray-600"
-        >
-          Add to Cart
-        </button>
+            className="bg-blue-500 text-white p-2 rounded-full mt-4 sm:mt-0"
+            onClick={() => addToCart(selectedProduct)}
+          >
+            Add to Cart
+          </button>
       </div>
     </div>
   )}

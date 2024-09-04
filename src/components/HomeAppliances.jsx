@@ -380,14 +380,14 @@ const HomeAppliances = () => {
         <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
-          <h3 className="text-lg font-semibold">Rating: {selectedProduct.rating}</h3>
-          <button
+          <h3 className="text-sm font-semibold text-yellow-300">{selectedProduct.rating}★★★★☆</h3>
+        </div>
+        <button
             className="bg-blue-500 text-white p-2 rounded-full mt-4 sm:mt-0"
             onClick={() => addToCart(selectedProduct)}
           >
             Add to Cart
           </button>
-        </div>
       </div>
     </div>
   )}
