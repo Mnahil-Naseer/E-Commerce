@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { SidebarContext } from "../contexts/SidebarContext";
 import { CartContext } from "../contexts/CartContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Logo from "../assets/img/logo.png";
 import { BsBag } from "react-icons/bs";
 import { FaRegCircleUser } from "react-icons/fa6";
@@ -14,20 +14,28 @@ import { FiSearch } from "react-icons/fi"; // Import the search icon
 const Header = () => {
   const { isOpen, setIsOpen } = useContext(SidebarContext);
   const { itemAmount } = useContext(CartContext);
-  const [isActive, setIsActive] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
   const navigate = useNavigate();
+  const location = useLocation();
 
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
   useEffect(() => {
     if (isInView) {
       mainControls.start("visible");
     }
   }, [isInView, mainControls]);
-
 
   const handleLogout = () => {
     logout();
@@ -39,13 +47,12 @@ const Header = () => {
   };
 
   return (
-    <header
-      className="bg-gray-300 text-black font-semibold shadow-2xl  w-full z-20 transition-all duration-300">
+    <header className="bg-gray-300 text-black font-semibold shadow-2xl  w-full z-20 transition-all duration-300">
       <div
         ref={ref}
         className="container mx-auto flex items-center justify-between h-full px-4 md:px-8"
       >
-        <Link to={"/"}>
+        <Link to="/">
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 100 },
@@ -63,7 +70,7 @@ const Header = () => {
         </Link>
 
         <motion.div
-          className="flex-grow flex justify-center  md:flex"
+          className="flex-grow flex justify-center md:flex"
           variants={{
             hidden: { opacity: 0, y: -100 },
             visible: { opacity: 1, y: 1 },
@@ -76,21 +83,21 @@ const Header = () => {
           }}
         >
           <nav className="flex items-center space-x-4 md:space-x-8">
-            <a href="#Hero" className="hover:text-gray-700 cursor-pointer">
+            <Link to="/" className="hover:text-gray-700 cursor-pointer">
               Home
-            </a>
-            <a href="#Home" className="hover:text-gray-700 cursor-pointer">
+            </Link>
+            <Link to="/#Home" className="hover:text-gray-700 cursor-pointer">
               Collections
-            </a>
-            <a href="#BigSave" className="hover:text-gray-700 cursor-pointer">
+            </Link>
+            <Link to="/#BigSave" className="hover:text-gray-700 cursor-pointer">
               Big Save
-            </a>
-            <a href="#NewArrivals" className="hover:text-gray-700 cursor-pointer">
+            </Link>
+            <Link to="/#NewArrivals" className="hover:text-gray-700 cursor-pointer">
               New Arrivals
-            </a>
-            <a href="#Footer" className="hover:text-gray-700 cursor-pointer">
+            </Link>
+            <Link to="/#Footer" className="hover:text-gray-700 cursor-pointer">
               Contact Us
-            </a>
+            </Link>
             <div className="relative">
               <input
                 type="text"

@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { FaCartPlus, FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import collection from '../assets/img/collection.jpg';
 import hoverCollection from '../assets/img/hover collection.jpg';
@@ -215,6 +216,7 @@ const Women = () => {
   };
 
   return (
+    <Link to="women">
     <div className="p-4">
       {/* Main Banner Section */}
       <section className="relative h-screen mb-16 border-8 border-[#fab790] flex items-center overflow-hidden">
@@ -386,6 +388,7 @@ const Women = () => {
         </div>
       )}
     </div>
+    </Link>
   );
 };
 

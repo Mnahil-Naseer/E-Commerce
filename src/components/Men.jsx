@@ -18,6 +18,7 @@ import men14 from '../assets/img/men14.jpg';
 import banner from '../assets/img/banner4.jpg';
 import { FaCartPlus, FaEye, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { CartContext } from '../contexts/CartContext';
+import { Link } from 'react-router-dom';
 export const Menproducts = [
   {
     id: uuidv4(),
@@ -212,6 +213,7 @@ const Men = () => {
     setCurrentSlide(0);
   };
   return (
+    <Link to="men">
     <div className="p-4">
       {/* Main Banner Section */}
       <section className="relative h-screen mb-16 border-8 border-black flex items-center overflow-hidden">
@@ -380,6 +382,7 @@ const Men = () => {
       )}
 
     </div>
+    </Link>
   );
 };
 

@@ -47,11 +47,8 @@ const CartProvider = ({ children }) => {
 
   const increaseAmount = (id) => {
     setCart((prevCart) => {
-      let alertShown = false;
       const updatedCart = prevCart.map((item) => {
-        if (item.id === id && !alertShown) {
-          alertShown = true;
-          alert("Product amount increased successfully.");
+        if (item.id === id ) {
           return { ...item, amount: item.amount + 1 };
         }
         return item.id === id ? { ...item, amount: item.amount + 1 } : item;

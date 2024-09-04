@@ -116,7 +116,7 @@ const BillingPage = () => {
             </div>
             <button
               type="submit"
-              className="bg-violet-600 text-white px-14 py-2 rounded"
+              className="bg-black hover:bg-[#6d532e] text-white px-14 py-2 rounded"
             >
               Place Order
             </button>
@@ -142,7 +142,7 @@ const BillingPage = () => {
           <div className="text-center  mt-6">
         <button
           onClick={handleBackToShopping}
-          className="bg-violet-600 text-white px-14 py-2 rounded"
+          className="bg-black hover:bg-[#6d532e] text-white px-14 py-2 rounded"
         >
           Back to Shopping
         </button>

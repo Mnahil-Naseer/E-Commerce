@@ -36,7 +36,7 @@ const LoginPage = () => {
         <img src={bg} alt="Background" className="w-full h-full object-cover opacity-50" />
         <div className="absolute inset-0 bg-gray-800 opacity-30"></div>
       </div>
-      <div className="relative bg-gradient-to-r from-indigo-500 via-purple-400 to-pink-500 p-8 rounded shadow-xl shadow-gray-700 w-full max-w-md z-30">
+      <div className="relative bg-gradient-to-r from-cyan-950 via-cyan-400 to-cyan-500 p-8 rounded shadow-xl shadow-gray-700 w-full max-w-md z-30">
         <h1 className="text-2xl font-bold mb-6 text-center animate-bounce  ">{isSignUp ? 'Sign Up ' : 'Login'}</h1>
         {error && <div className="text-red-500 mb-4">{error}</div>}
         <form onSubmit={handleSubmit}>
@@ -84,7 +84,7 @@ const LoginPage = () => {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-gradient-to-r from-red-300 to-pink-400 hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-gradient-to-r from-cyan-300 to-cyan-400 hover:from-cyan-500 hover:via-cyan-500 hover:to-cyan-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               {isSignUp ? 'Sign Up' : 'Login'}
             </button>

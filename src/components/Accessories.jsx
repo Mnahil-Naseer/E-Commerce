@@ -18,6 +18,7 @@ import ring5 from '../assets/img/ring5.jpg';
 import earings5 from '../assets/img/earings5.jpg';
 import { CartContext } from '../contexts/CartContext';
 import banner from '../assets/img/banner2.jpg';
+import { Link } from 'react-router-dom';
 export const AccessoriesProducts = [
   {
     id: uuidv4(),
@@ -216,6 +217,7 @@ const Accessories = () => {
   };
 
   return (
+    <Link to="accessories">
     <div className="p-4">
       {/* Main Banner Section */}
       <section className="relative h-screen mb-16 border-8 border-[#08465c] flex items-center overflow-hidden">
@@ -390,6 +392,7 @@ const Accessories = () => {
         </div>
       )}
     </div>
+    </Link>
   );
 };
 

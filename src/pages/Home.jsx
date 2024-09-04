@@ -29,11 +29,11 @@ import women6 from '../assets/img/women6.jpg';
 import p8 from '../assets/img/p8.jpg';
 import men11 from '../assets/img/men11.jpg';
 const categories = [
-  { to: "/components/Accessories", image: cover, label: "Accessories" },
-  { to: "/components/women", image: cover2, label: "Women's Clothing" },
-  { to: "/components/men", image: cover3, label: "Men's Clothing" },
-  { to: "/components/HomeAppliances", image: cover4, label: "Home Appliances" },
-  { to: "/components/Decoration", image: cover5, label: "Decoration" },
+  { to: "/accessories", image: cover, label: "Accessories" },
+  { to: "/women", image: cover2, label: "Women's Clothing" },
+  { to: "/men", image: cover3, label: "Men's Clothing" },
+  { to: "/homeAppliances", image: cover4, label: "Home Appliances" },
+  { to: "/decoration", image: cover5, label: "Decoration" },
 ];
 
 const products = [

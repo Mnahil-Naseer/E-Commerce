@@ -20,20 +20,20 @@ const Sidebar = () => {
     <div
       className={`${
         isOpen ? "right-0" : "-right-full"
-      } w-full bg-violet-100 fixed top-0 h-full shadow-2xl md:w-[35vw] lg:w-[30vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-8 rounded-l-lg`}
+      } w-full bg-gray-300 fixed top-0 h-full shadow-2xl md:w-[35vw] lg:w-[30vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-8 rounded-l-lg`}
     >
-      <div className="flex items-center justify-between p-3 border-b border-violet-400">
-        <div className="uppercase text-lg my-3 font-semibold text-violet-900">
+      <div className="flex items-center justify-between p-3 border-b-2 border-gray-600">
+        <div className="uppercase text-lg my-3 font-semibold text-black">
           View Cart ({itemAmount})
         </div>
         <div
           onClick={handleClose}
           className="cursor-pointer w-8 h-8 flex justify-center items-center"
         >
-          <IoMdArrowForward className="text-2xl text-violet-900" />
+          <IoMdArrowForward className="text-2xl text-gray-900" />
         </div>
       </div>
-      <div className="flex flex-col gap-y-2 h-[50vh] md:h-[60vh] lg:h-[65vh] overflow-y-auto border-b border-violet-500">
+      <div className="flex flex-col gap-y-2 h-[50vh] md:h-[60vh] lg:h-[65vh] overflow-y-auto border-b border-gray-500">
         {cart.map((item) => {
           return (
             <div key={item.id} className="border-b py-2">
@@ -45,7 +45,7 @@ const Sidebar = () => {
       <div className="flex flex-col mt-2">
         <div className="flex justify-between items-center mb-4">
           {/* Total */}
-          <div className="font-semibold text-violet-900">
+          <div className="font-semibold text-gray-900">
             <span className="mr-2">Subtotal:</span> ${parseFloat(total).toFixed(2)}
           </div>
           {/* Clear Cart Button */}
@@ -58,7 +58,7 @@ const Sidebar = () => {
         </div>
         <button
           onClick={handleCheckout}
-          className="bg-violet-600 py-3 text-white font-medium rounded hover:bg-violet-700 transition w-full"
+          className="bg-gray-900 py-3 text-white font-medium rounded hover:bg-[#6d532e] transition w-full"
         >
           Checkout
         </button>

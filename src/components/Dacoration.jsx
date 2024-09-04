@@ -19,6 +19,7 @@ import d14 from '../assets/img/d14.jpg';
 import d15 from '../assets/img/d15.jpg';
 import banner from '../assets/img/banner6.jpg'
 import { CartContext } from '../contexts/CartContext';
+import { Link } from 'react-router-dom';
 export const Decorationproducts = [
   {
     id: uuidv4(),
@@ -218,6 +219,7 @@ const Decoration = () => {
     setCurrentSlide(0);
   };
   return (
+    <Link to="dacoration">
     <div className="p-4">
       {/* Main Banner Section */}
       <section className="relative h-screen mb-16 border-8 border-l-cyan-900 border-b-cyan-900 border-t-[#5e4b08] border-r-[#5e4b08] flex items-center overflow-hidden">
@@ -403,6 +405,7 @@ const Decoration = () => {
         </div>
       )}
     </div>
+    </Link>
   );
 };
 
