@@ -305,7 +305,7 @@ const Home = () => {
             className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/6 p-2"
           >
             <div
-              className="relative mx-20 md:-mx-6 flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-600 hover:animate-zoomOut transition"
+              className="relative mx-16 md:-mx-6 flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-600 hover:animate-zoomOut transition"
               style={{
                 backgroundImage: `url('${image}')`,
                 backgroundSize: 'cover',
