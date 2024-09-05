@@ -5,7 +5,8 @@
 
 E-Mart is a modern e-commerce platform built using React.js and Tailwind CSS. This platform delivers a seamless shopping experience with dynamic animations, a responsive design, and comprehensive functionalities for managing products, categories, and the shopping cart.
 
-[![E-Mart](C:\Users\Lenovo\Desktop\E-mart.jpg)](https://emart112233.vercel.app/)
+[![E-Mart](https://github.com/user-attachments/assets/00c9357e-4db7-4897-b6ad-d2f2966c35ec)](https://emart112233.vercel.app/)
+
 
 
 ## Features
