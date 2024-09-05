@@ -10,13 +10,16 @@ import Layout from './components/Layout';
 import Women from './components/Women';
 import Men from './components/Men';
 import HomeAppliances from './components/HomeAppliances';
-import Dacoration from './components/Dacoration';
+import Decoration from './components/Dacoration'; // Fixed spelling
+import ScrollToTop from './components/ScrollToTop'; // Import the new component
+
 function App() {
   return (
     <AuthProvider>
       <ProductProvider>
         <Router>
           <Layout>
+            <ScrollToTop /> 
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
@@ -25,7 +28,7 @@ function App() {
               <Route path="/women" element={<Women />} /> 
               <Route path="/men" element={<Men />} /> 
               <Route path="/homeAppliances" element={<HomeAppliances />} /> 
-              <Route path="/decoration" element={<Dacoration />} /> 
+              <Route path="/decoration" element={<Decoration />} /> {/* Fixed spelling */}
             </Routes>
           </Layout>
         </Router>

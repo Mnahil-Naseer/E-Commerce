@@ -31,7 +31,7 @@ import men11 from '../assets/img/men11.jpg';
 import banner1 from '../assets/img/banner1.jpg';
 import { GrLinkNext } from "react-icons/gr";
 const categories = [
-  { to: "/accessories", image: cover, label: "Accessories" },
+  { to: "accessories", image: cover, label: "Accessories" },
   { to: "/women", image: cover2, label: "Women's Clothing" },
   { to: "/men", image: cover3, label: "Men's Clothing" },
   { to: "/homeAppliances", image: cover4, label: "Home Appliances" },
@@ -249,7 +249,7 @@ const Home = () => {
 
   const handleNewArrivalsNextClick = () => {
     setNewProductIndex((prevIndex) =>
-      Math.min(prevIndex + 1)
+      Math.min(prevIndex + 1, newproduct.length - 1)
     );
   };
 

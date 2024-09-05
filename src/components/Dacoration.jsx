@@ -241,7 +241,7 @@ const Decoration = () => {
         <img
           src={banner}
           alt="Home Appliances"
-          className="w-72 h-72 sm:h-64 md:h-80 lg:h-96 rounded-t-full max-w-md object-cover"
+          className="w-72 h-72 sm:h-64 md:h-80 lg:h-96 lg:w-96 rounded-t-full max-w-md object-cover"
         />
       </div>
     </section>

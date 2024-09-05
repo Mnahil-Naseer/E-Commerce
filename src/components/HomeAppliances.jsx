@@ -225,7 +225,7 @@ const HomeAppliances = () => {
       <img
         src={banner}
         alt="Home Appliances"
-        className="w-72 h-72 sm:h-64 md:h-80 lg:h-96 object-cover mb-0 rounded-t-full"
+        className="w-72 h-72 sm:h-64 md:h-8 lg:h-96 lg:w-96 object-cover mb-0 rounded-t-full"
       />
     </div>
     <div className="flex-1 flex flex-col justify-center p-5 text-black">
