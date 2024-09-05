@@ -20,7 +20,7 @@ const Sidebar = () => {
     <div
       className={`${
         isOpen ? "right-0" : "-right-full"
-      } w-full z-50 bg-gray-300 fixed top-0 h-full shadow-2xl md:w-[35vw] lg:w-[30vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-8 rounded-l-lg`}
+      } w-full bg-gray-300 fixed top-0 h-full shadow-2xl md:w-[35vw] lg:w-[30vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-8 rounded-l-lg`}
     >
       <div className="flex items-center justify-between p-3 border-b-2 border-gray-600">
         <div className="uppercase text-lg my-3 font-semibold text-black">

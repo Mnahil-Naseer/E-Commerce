@@ -122,7 +122,7 @@ const Header = () => {
 
         <motion.div
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="cursor-pointer animate-slideDown flex relative z-50 md:ml-4"
+          className="cursor-pointer animate-slideDown flex relative md:ml-4"
           variants={{
             hidden: { opacity: 0, x: -100 },
             visible: { opacity: 1, x: 1 },
@@ -136,7 +136,7 @@ const Header = () => {
         >
           <FaRegCircleUser className="text-xl mr-2 -mt-2" />
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-9 bg-gray-300 border-solid border-white shadow-lg rounded-md w-48 md:w-56">
+            <div className="absolute z-50 right-0 mt-9 bg-gray-300 border-solid border-white shadow-lg rounded-md w-48 md:w-56">
               <ul className="py-2">
                 <li className="px-4 py-2 hover:bg-gray-400 hover:shadow-slate-800 hover:shadow-lg cursor-pointer flex items-center">
                   Profile <CgProfile className="ml-auto text-2xl" />
