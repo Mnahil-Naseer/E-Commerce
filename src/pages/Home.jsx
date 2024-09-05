@@ -271,8 +271,8 @@ const Home = () => {
             </div>
             <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
               <FaUserGroup className='text-3xl' />
-              <h3 className="text-xs lg:text-sm font-bold">Shoppers worldwide</h3>
-              <p className="text-xs lg:text-sm text-gray-600">More than 300 million shoppers from 200+ countries & regions</p>
+              <h3 className="text-xs lg:text-sm font-bold">Customers worldwide</h3>
+              <p className="text-xs lg:text-sm text-gray-600">More than 300 million customers from 200+ countries & regions</p>
             </div>
             <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
               <GrDeliver className='text-3xl' />
