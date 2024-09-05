@@ -122,9 +122,9 @@ const Header = () => {
 
         <motion.div
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="cursor-pointer animate-slideDown flex relative md:ml-4"
+          className="cursor-pointer animate-slideDown flex relative z-50 md:ml-4"
           variants={{
-            hidden: { opacity: 0, x: 100 },
+            hidden: { opacity: 0, x: -100 },
             visible: { opacity: 1, x: 1 },
           }}
           initial="hidden"
@@ -136,17 +136,17 @@ const Header = () => {
         >
           <FaRegCircleUser className="text-xl mr-2 -mt-2" />
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-9 bg-[#1c424a] border-solid border-white shadow-lg rounded-md w-48 md:w-56">
+            <div className="absolute right-0 mt-9 bg-gray-300 border-solid border-white shadow-lg rounded-md w-48 md:w-56">
               <ul className="py-2">
-                <li className="px-4 py-2 hover:bg-[#1c424a] hover:shadow-slate-800 hover:shadow-lg cursor-pointer flex items-center">
+                <li className="px-4 py-2 hover:bg-gray-400 hover:shadow-slate-800 hover:shadow-lg cursor-pointer flex items-center">
                   Profile <CgProfile className="ml-auto text-2xl" />
                 </li>
                 {isAuthenticated ? (
-                  <li className="px-4 py-2 hover:bg-[#1c424a] hover:shadow-slate-800 hover:shadow-lg cursor-pointer flex items-center" onClick={handleLogout}>
+                  <li className="px-4 py-2 hover:bg-gray-400 hover:shadow-slate-800 hover:shadow-lg cursor-pointer flex items-center" onClick={handleLogout}>
                     Logout <FiLogOut className="ml-auto text-2xl" />
                   </li>
                 ) : (
-                  <li className="px-4 py-2 hover:bg-violet-500 hover:shadow-slate-800 hover:shadow-lg cursor-pointer flex items-center" onClick={handleLoginClick}>
+                  <li className="px-4 py-2 hover:bg-gray-400 hover:shadow-slate-800 hover:shadow-lg cursor-pointer flex items-center" onClick={handleLoginClick}>
                     Login <FiLogOut className="ml-auto text-2xl" />
                   </li>
                 )}
@@ -178,7 +178,7 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation Menu */}
-      {isMobileMenuOpen && (
+   {isMobileMenuOpen && (
   <div className="absolute top-12 left-0 right-0 bg-gray-300 p-4 w-full h-72 z-20 md:hidden">
     <div className="relative mb-4">
       <input

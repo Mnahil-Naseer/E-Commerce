@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import bg from '../assets/img/Elegant Online Shopping Logo Template.jpg';
+import bg from '../assets/img/bghero.jpg';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -31,17 +31,17 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center">
+    <div className="relative min-h-screen flex  items-center justify-center">
       <div className="absolute inset-0">
-        <img src={bg} alt="Background" className="w-full h-full object-cover opacity-50" />
-        <div className="absolute inset-0 bg-gray-800 opacity-30"></div>
+        <img src={bg} alt="Background" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-transparent backdrop-blur-sm"></div>
       </div>
-      <div className="relative bg-gradient-to-r from-cyan-950 via-cyan-400 to-cyan-500 p-8 rounded shadow-xl shadow-gray-700 w-full max-w-md z-30">
+      <div className="relative bg-gradient-to-r from-[#653a08cc]  via-[#a16f35cc] to-[#653a08cc] p-8 rounded shadow-xl shadow-gray-700 w-full max-w-md z-30">
         <h1 className="text-2xl font-bold mb-6 text-center animate-bounce  ">{isSignUp ? 'Sign Up ' : 'Login'}</h1>
         {error && <div className="text-red-500 mb-4">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-black text-sm font-bold mb-2" htmlFor="username">
+            <label className="block text-white text-sm font-bold mb-2" htmlFor="username">
               Username
             </label>
             <input
@@ -49,12 +49,12 @@ const LoginPage = () => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-black bg-transparent  focus:bg-white leading-tight focus:outline-none focus:shadow-outline"
               required
             />
           </div>
           <div className="mb-6">
-            <label className="block text-black text-sm font-bold mb-2" htmlFor="password">
+            <label className="block text-white  text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
             <input
@@ -62,13 +62,13 @@ const LoginPage = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-black bg-transparent mb-3 leading-tight focus:bg-white focus:outline-none focus:shadow-outline"
               required
             />
           </div>
           {isSignUp && (
             <div className="mb-6">
-              <label className="block text-black text-sm font-bold mb-2" htmlFor="confirmPassword">
+              <label className="block text-white text-sm font-bold mb-2" htmlFor="confirmPassword">
                 Confirm Password
               </label>
               <input
@@ -76,7 +76,7 @@ const LoginPage = () => {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-black mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-black bg-transparent focus:bg-white  mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 required
               />
             </div>
@@ -84,7 +84,7 @@ const LoginPage = () => {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-gradient-to-r from-cyan-300 to-cyan-400 hover:from-cyan-500 hover:via-cyan-500 hover:to-cyan-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-[#653a08] opacity-40 hover:bg-[#653a08] hover:opacity-90 text-white font-bold py-2 px-4 rounded shadow-inner focus:outline-none focus:shadow-outline"
             >
               {isSignUp ? 'Sign Up' : 'Login'}
             </button>
@@ -94,7 +94,7 @@ const LoginPage = () => {
                 setIsSignUp(!isSignUp);
                 setError('');
               }}
-              className="text-white hover:underline"
+              className="text-white hover:underline hover:text-amber-950"
             >
               {isSignUp ? 'Already have an account? Login' : 'Need an account? Sign Up'}
             </button>

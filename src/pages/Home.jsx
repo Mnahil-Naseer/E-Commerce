@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import collection from '../assets/img/collection.jpg';
 import fashion from '../assets/img/fashion.jpg';
 import p2 from '../assets/img/p2.jpg';
-import banner from '../assets/img/banner1.jpg';
+import banner from '../assets/img/banner.jpg';
 import men1 from '../assets/img/men1.jpg';
 import p15 from '../assets/img/p15.jpg';
 import men15 from '../assets/img/men15.jpg';
@@ -15,7 +15,7 @@ import earings4 from '../assets/img/earings4.jpg';
 import d14 from '../assets/img/d14.jpg';
 import d5 from '../assets/img/d5.jpg';
 import d1 from '../assets/img/d1.jpg';
-import cover from '../assets/img/cover.jpg'; // Men's Clothing image
+import cover from '../assets/img/cover6.jpg'; // Men's Clothing image
 import cover2 from '../assets/img/cover2.jpg'; // Jewelry image
 import cover3 from '../assets/img/cover3.jpg'; // Women's Clothing image
 import cover4 from '../assets/img/cover4.jpg'; // Home Appliances image
@@ -28,6 +28,8 @@ import { CartContext } from '../contexts/CartContext';
 import women6 from '../assets/img/women6.jpg';
 import p8 from '../assets/img/p8.jpg';
 import men11 from '../assets/img/men11.jpg';
+import banner1 from '../assets/img/banner1.jpg';
+import { GrLinkNext } from "react-icons/gr";
 const categories = [
   { to: "/accessories", image: cover, label: "Accessories" },
   { to: "/women", image: cover2, label: "Women's Clothing" },
@@ -257,13 +259,11 @@ const Home = () => {
   return (
     <div>
   <MainBanner />
-
   <section id="ShoppingBenefits" className="py-8">
     <div className="container px-4 sm:px-8 lg:px-16">
       <div className="flex flex-wrap md:flex-row gap-6 lg:gap-10 justify-between">
         <div className="flex flex-col lg:flex-row items-center w-full">
-          <h2 className="text-xl font-bold mb-4 lg:mb-0 lg:text-2xl">Better choices, Better prices</h2>
-          <div className="flex flex-col md:flex-row gap-6 lg:gap-5 w-full lg:w-auto">
+          <div className="flex flex-col md:flex-row   w-full lg:w-auto">
             <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
               <FaDollarSign className='text-3xl' />
               <h3 className="text-xs lg:text-sm font-bold">Value-for-money</h3>
@@ -294,8 +294,7 @@ const Home = () => {
       </div>
     </div>
   </section>
-
-  <section id="Home" className="px-4 sm:px-8 lg:px-12">
+  <section id="Home" className="px-4 mb-10 mt-16 sm:px-8 lg:px-12">
     <div className="relative">
       <div className="flex flex-wrap gap-6 justify-between">
         {categories.map(({ to, image, label }) => (
@@ -305,23 +304,24 @@ const Home = () => {
             className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/6 p-2"
           >
             <div
-              className="relative mx-16 md:-mx-6 flex flex-col items-center justify-end bg-gray-200 text-center p-4 rounded-lg hover:shadow-xl hover:shadow-gray-600 hover:animate-zoomOut transition"
+              className="relative mx-16 md:-mx-6 flex flex-col items-center justify-end bg-gray-200 text-center p-4  hover:shadow-xl hover:shadow-gray-600 hover:animate-zoomOut transition"
               style={{
                 backgroundImage: `url('${image}')`,
                 backgroundSize: 'cover',
+                backgroundRepeat:'no-repeat',
                 backgroundPosition: 'center',
                 height: '320px',
-                width: '230px', // Adjusted to be responsive
+                width: '245px', // Adjusted to be responsive
               }}
             >
-              <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div>
+              <div className="absolute inset-0 bg-black opacity-50 "></div>
               <div className="relative w-full p-4">
                 <h3 className="text-lg lg:text-xl font-semibold text-white mb-2">{label}</h3>
                 <Link
                   to={to}
-                  className="inline-block bg-white text-black px-4 py-2 rounded hover:bg-gray-400 hover:border hover:border-b-red-700 hover:border-l-red-700 hover:border-t-gray-900 hover:border-r-gray-900 transition"
+                  className="inline-block bg-transparent border-2 text-black px-4 py-4 rounded-full hover:bg-white hover:border-2 hover:border-black transition"
                 >
-                  Details
+                  <GrLinkNext />
                 </Link>
               </div>
             </div>
@@ -331,8 +331,8 @@ const Home = () => {
     </div>
   </section>
 
-  <section id="BigSave" className="px-4 sm:px-8 lg:px-16 mt-8 relative">
-    <h2 className="text-3xl font-bold mb-6 text-left">Big Save</h2>
+  <section id="BigSave" className="px-4 sm:px-8 lg:px-16 mt-8 mb-16 relative">
+    <h2 className="text-3xl font-extrabold mb-10 mt-16 font-serif text-red-800 text-left">Big Save</h2>
     <div className="relative overflow-hidden">
       <button
         onClick={handlePrevClick}
@@ -390,9 +390,38 @@ const Home = () => {
       </button>
     </div>
   </section>
-
-  <section id="NewArrivals" className="px-4 sm:px-8 lg:px-16 mt-8">
-    <h2 className="text-3xl font-bold mb-6 text-left">New Arrivals</h2>
+  <section className="relative bg-cover bg-center h-screen flex items-center justify-start text-white overflow-hidden">
+      <div 
+        className="absolute inset-0 " 
+        style={{ 
+          backgroundImage: `url('${banner1}')`, 
+          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover'
+        }}
+      >
+        <div className="absolute inset-0 bg-black opacity-50 "></div></div> 
+      <div className="relative z-10 text-start mx-16 text-white">
+        <p className="text-lg md:text-xl font-semibold font-serif uppercase mb-10 animate-pulse">limited time offer</p>
+        <h1 className="text-4xl md:text-5xl font-extrabold font-serif mb-4">
+          Special Edition
+        </h1>
+        <p className="mt-4 text-lg md:text-xl text-white font-semibold mb-2">
+        Explore our exclusive winter collection, featuring the latest trends to keep you warm and stylish.<br/> Embrace cozy layers and chic designs perfect for every winter occasion.
+        </p>
+        <h2 className='font-sans animate-pulse font-extrabold text-red-700'>
+         Use Code OFF20 And get 20% OFF
+        </h2>
+        <a 
+          href="#Home" 
+          className="mt-6 inline-block px-6 py-3 border-2 hover:border-gray-700 text-white font-semibold text-lg rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+        >
+          Shop Now
+        </a>
+      </div>
+    </section>
+  <section id="NewArrivals" className="px-4 sm:px-8 lg:px-16 mt-8 mb-16">
+    <h2 className="text-3xl font-extrabold font-serif mb-10 mt-16 text-left">New Arrivals</h2>
     <div className="relative overflow-hidden">
       <button
         onClick={handleNewArrivalsPrevClick}
@@ -476,16 +505,17 @@ const Home = () => {
 
 export const MainBanner = () => {
   return (
-    <section className="relative bg-cover bg-center h-screen flex items-center justify-start text-white overflow-hidden">
+    <section id='MainBanner' className="relative bg-cover bg-center h-screen flex items-center justify-start text-white overflow-hidden">
       <div 
-        className="absolute inset-0 bg-black opacity-80" 
+        className="absolute inset-0 " 
         style={{ 
           backgroundImage: `url('${banner}')`, 
           backgroundAttachment: 'fixed',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover'
         }}
-      ></div> 
+      >
+        <div className="absolute inset-0 bg-black opacity-50 "></div></div> 
       <div className="relative z-10 text-start mx-5 text-black">
         <h1 className="text-4xl md:text-5xl font-extrabold font-serif mb-4">
           Embrace the Chill in Style

@@ -11,7 +11,6 @@ import Women from './components/Women';
 import Men from './components/Men';
 import HomeAppliances from './components/HomeAppliances';
 import Dacoration from './components/Dacoration';
-
 function App() {
   return (
     <AuthProvider>
