@@ -330,12 +330,12 @@ const HomeAppliances = () => {
   </div>
 
   <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold mt-16 mb-10">Home Appliances</h1>
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mb-8">
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8 mb-8">
     {products.length > 0 ? (
       products.map(product => (
         <div
           key={product.id}
-          className="relative border p-4 h-auto w-48 sm:w-56 md:w-64 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+          className="relative border p-4 sm:p-6 h-auto w-44 sm:w-56 rounded-lg shadow-lg group overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
         >
           <img
             src={product.image}
