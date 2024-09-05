@@ -249,7 +249,7 @@ const Home = () => {
 
   const handleNewArrivalsNextClick = () => {
     setNewProductIndex((prevIndex) =>
-      Math.min(prevIndex + 1, newproduct.length - 1)
+      Math.min(prevIndex + 1)
     );
   };
 
