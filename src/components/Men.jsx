@@ -319,7 +319,7 @@ const Men = () => {
 
   <h1 className="text-2xl sm:text-3xl font-extrabold mt-16 mb-4">Men Fashion</h1>
 
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-2 mb-8">
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-5 mb-8">
     {products.length > 0 ? (
       products.map(product => (
         <div
