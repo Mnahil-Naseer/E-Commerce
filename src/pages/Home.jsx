@@ -234,22 +234,22 @@ const Home = () => {
   }, []);
 
   const handlePrevClick = () => {
-    setProductIndex((prevIndex) => Math.max(prevIndex - itemsToShow, 0));
+    setProductIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
   const handleNextClick = () => {
     setProductIndex((prevIndex) =>
-      Math.min(prevIndex + itemsToShow, products.length - itemsToShow)
+      Math.min(prevIndex + 1, products.length - 1)
     );
   };
 
   const handleNewArrivalsPrevClick = () => {
-    setNewProductIndex((prevIndex) => Math.max(prevIndex - itemsToShow, 0));
+    setNewProductIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
   const handleNewArrivalsNextClick = () => {
     setNewProductIndex((prevIndex) =>
-      Math.min(prevIndex + itemsToShow, newproduct.length - itemsToShow)
+      Math.min(prevIndex + 1, newproduct.length - 1)
     );
   };
 

@@ -183,7 +183,7 @@ const Accessories = () => {
 
   const handleNextSlide = () => {
     setCurrentSlide((prev) =>
-      Math.min(prev + 1, Math.max(topSelling.length - 5, 0))
+      Math.min(prev + 1, Math.max(topSelling.length - 1, 0))
     );
   };
 
