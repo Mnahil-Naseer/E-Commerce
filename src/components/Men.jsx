@@ -213,11 +213,11 @@ const Men = () => {
     setCurrentSlide(0);
   };
   return (
-    <div className="p-4">
+    <div className="p-4 bg-gradient-to-b from-[#d3c495b4] to-[#00000059]">
   {/* Main Banner Section */}
-  <section className="relative h-screen mb-16 border-8 border-black flex flex-col md:flex-row items-center overflow-hidden">
+  <section className="relative h-screen mb-16 border-8 border-t-black border-r-black border-l-[#796217] border-b-[#796217] flex flex-col md:flex-row items-center overflow-hidden">
     <div className="flex-1 flex flex-col justify-center p-5 text-black text-center md:text-left">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-serif mb-4">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl bg-gradient-to-t from-[#a99044] to-[#000000] text-transparent bg-clip-text font-extrabold font-serif mb-4">
         Redefine Your Look with Men's Fashion
       </h1>
       <p className="mt-3 text-base sm:text-lg md:text-xl text-gray-800 font-semibold mb-6">
@@ -243,19 +243,19 @@ const Men = () => {
   <div id="products" className="mb-6 flex justify-center flex-wrap gap-4">
     <button
       onClick={() => handleCategoryChange('All')}
-      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-gradient-to-b from-[#d3c395] to-[#000000a8] text-white' : 'bg-white text-black'} font-semibold`}
     >
       All
     </button>
     <button
       onClick={() => handleCategoryChange('Formal')}
-      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Formal' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Formal' ? 'bg-gradient-to-b from-[#d3c395] to-[#000000a8] text-white' : 'bg-white text-black'} font-semibold`}
     >
       Formal
     </button>
     <button
       onClick={() => handleCategoryChange('Casual')}
-      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Casual' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Casual' ? 'bg-gradient-to-b from-[#d3c395] to-[#000000a8] text-white' : 'bg-white text-black'} font-semibold`}
     >
       Casual
     </button>
@@ -267,7 +267,7 @@ const Men = () => {
   <div className="relative">
     <button
       onClick={handlePrevSlide}
-      className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#b39743] text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
       disabled={currentSlide === 0}
     >
       <FaChevronLeft />
@@ -275,7 +275,7 @@ const Men = () => {
 
     <button
       onClick={handleNextSlide}
-      className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#b39743] text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
       disabled={currentSlide === topSelling.length - 5}
     >
       <FaChevronRight />
@@ -300,14 +300,14 @@ const Men = () => {
             <p className="text-sm sm:text-base font-bold">${product.price.toFixed(2)}</p>
 
             {/* Hover effects */}
-            <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+            <div className="absolute bottom-0 inset-x-0 bg-transparent p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
               <button
-                className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                className="bg-[#b39743] text-white p-2 rounded-full mx-1"
                 onClick={() => addToCart(product)} // Add to Cart
               >
                 <FaCartPlus />
               </button>
-              <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+              <button onClick={() => handleModalOpen(product)} className="bg-[#b39743] text-white p-2 rounded-full mx-1">
                 <FaEye />
               </button>
             </div>
@@ -335,14 +335,14 @@ const Men = () => {
           <p className="text-sm sm:text-base font-bold">${product.price.toFixed(2)}</p>
 
           {/* Hover effects */}
-          <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+          <div className="absolute bottom-0 inset-x-0 bg-transparent p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
             <button
-              className="bg-blue-500 text-white p-2 rounded-full mx-1"
+              className="bg-[#b39743] text-white p-2 rounded-full mx-1"
               onClick={() => addToCart(product)} // Add to Cart
             >
               <FaCartPlus />
             </button>
-            <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+            <button onClick={() => handleModalOpen(product)} className="bg-[#b39743] text-white p-2 rounded-full mx-1">
               <FaEye />
             </button>
           </div>
@@ -356,7 +356,7 @@ const Men = () => {
   {/* Modal for product details */}
   {isModalOpen && selectedProduct && (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-      <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
+      <div className="bg-gradient-to-b from-[#d3c395ec] to-[#000000c7] p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
         <button
           onClick={handleModalClose}
           className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
@@ -364,14 +364,14 @@ const Men = () => {
           <span className="text-3xl">&times;</span>
         </button>
         <h2 className="text-xl sm:text-2xl font-semibold mb-4">{selectedProduct.title}</h2>
-        <img className="w-20 h-32 sm:w-24 sm:h-36 md:w-28 md:h-48 lg:w-32 lg:h-56 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
-        <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
-        <div className="flex flex-col sm:flex-row justify-between items-center">
-          <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
+        <img className="w-20 h-32 sm:w-24 sm:h-36 md:w-28 md:h-48 lg:w-56 mx-24 lg:h-56 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
+        <p className="text-gray-200 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
+        <div className="flex flex-col sm:flex-row mb-5 justify-between items-center">
+          <h3 className="text-lg font-semibold text-gray-200">${selectedProduct.price.toFixed(2)}</h3>
           <h3 className="text-sm font-semibold text-yellow-300">{selectedProduct.rating}★★★★☆</h3>
         </div>
         <button
-            className="bg-blue-500 text-white p-2 rounded-full mt-4 sm:mt-0"
+            className="bg-gradient-to-b from-[#d3c495b4] to-[#00000059] hover:bg-gradient-to-t from-[#d3c395e0] to-[#000000b6] text-white p-2 rounded-full mt-4 sm:mt-0"
             onClick={() => addToCart(selectedProduct)}
           >
             Add to Cart

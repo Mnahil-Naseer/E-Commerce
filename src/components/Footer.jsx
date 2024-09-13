@@ -13,7 +13,7 @@ const Footer = () => {
   };
 
   return (
-    <footer id="Footer" className="py-5 mt-14 bg-gray-300 text-black">
+    <footer id="Footer" className="py-5  bg-gray-300 text-black">
       <div className="container mx-auto flex flex-wrap justify-between">
         <div className="w-full md:w-1/4 mt-16 md:mt-0">
           <h1 className="font-extrabold mb-10 font-serif text-4xl mx-6">E-Mart</h1>

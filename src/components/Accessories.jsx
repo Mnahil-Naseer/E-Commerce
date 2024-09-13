@@ -216,20 +216,20 @@ const Accessories = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-[#68321b81]">
     {/* Main Banner Section */}
-    <section className="relative h-screen mb-16 border-8 border-[#08465c] flex flex-col md:flex-row items-center overflow-hidden">
-      <div className="flex-1 flex flex-col justify-center p-5 text-black">
+    <section className="relative h-screen mb-16 border-8 bg-[#48211041] bg-opacity-30  backdrop-blur-md shadow-inner border-[#4e3930] border-spacing-5 flex flex-col md:flex-row items-center overflow-hidden">
+      <div className="flex-1 flex flex-col justify-center p-5 text-[#231008] ">
         <h1 className="text-3xl md:text-5xl font-extrabold font-serif mb-4">
           Elevate Your Style with Accessories
         </h1>
-        <p className="mt-3 text-base md:text-xl text-gray-800 font-semibold mb-6">
+        <p className="mt-3 text-base md:text-xl text-[#572915] font-semibold mb-6">
           Explore our curated collection of accessories designed to complement any outfit.<br />
           From elegant jewelry to chic handbags, find the perfect finishing touches to enhance your look.
         </p>
         <a
           href="#products"
-          className="px-5 py-3 border-2 border-black text-black font-semibold text-base md:text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
+          className="px-5 py-3 border-2 border-[#68321b8e] text-black font-semibold text-base md:text-lg rounded-lg shadow-md hover:bg-[#321c12] hover:text-white transition duration-300"
         >
           Shop Now
         </a>
@@ -248,7 +248,7 @@ const Accessories = () => {
         <button
           key={category}
           onClick={() => handleCategoryChange(category)}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === category ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === category ? 'bg-[#351609bd] text-white' : 'bg-white text-black'} font-semibold`}
         >
           {category}
         </button>
@@ -261,7 +261,7 @@ const Accessories = () => {
     <div className="relative mb-16">
       <button
         onClick={handlePrevSlide}
-        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#68321b8e] text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
         disabled={currentSlide === 0}
       >
         <FaChevronLeft />
@@ -269,7 +269,7 @@ const Accessories = () => {
   
       <button
         onClick={handleNextSlide}
-        className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#68321b8e] text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
         disabled={currentSlide === topSelling.length - 5}
       >
         <FaChevronRight />
@@ -290,18 +290,20 @@ const Accessories = () => {
                 alt={product.title}
                 className="w-full h-32 md:h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
-              <h2 className="text-xs md:text-sm font-semibold mb-1">{product.title}</h2>
-              <p className="text-sm md:text-base font-bold">${product.price.toFixed(2)}</p>
+              <h2 className="text-xs md:text-sm font-semibold mb-1">{product.category}</h2>
+          <h2 className="text-xs md:text-sm font-semibold mb-1">{product.title}</h2>
+          <h2 className="text-xs md:text-sm font-semibold mb-1">{product.rating}⭐</h2>
+          <p className="text-sm md:text-base font-bold">${product.price.toFixed(2)}</p>
   
               {/* Hover effects */}
-              <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+              <div className="absolute bottom-0 inset-x-0 bg-transparent p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
                 <button
-                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                  className="bg-[#68321bc8] text-white p-2 rounded-full mx-1"
                   onClick={() => addToCart(product)} // Add to Cart
                 >
                   <FaCartPlus />
                 </button>
-                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+                <button onClick={() => handleModalOpen(product)} className="bg-[#68321bc8] text-white p-2 rounded-full mx-1">
                   <FaEye />
                 </button>
               </div>
@@ -314,7 +316,7 @@ const Accessories = () => {
     <h1 className="text-2xl md:text-3xl font-extrabold mb-6">Accessories</h1>
   
     {/* Accessories Grid */}
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
       {products.map(product => (
         <div key={product.id} className="relative border p-4 rounded-lg shadow-lg overflow-hidden group">
           <img
@@ -322,18 +324,20 @@ const Accessories = () => {
             alt={product.title}
             className="w-full h-32 md:h-40 object-cover rounded-md mb-2 transition-transform duration-300 ease-in-out group-hover:scale-110"
           />
+          <h2 className="text-xs md:text-sm font-semibold mb-1">{product.category}</h2>
           <h2 className="text-xs md:text-sm font-semibold mb-1">{product.title}</h2>
+          <h2 className="text-xs md:text-sm font-semibold mb-1">{product.rating}⭐</h2>
           <p className="text-sm md:text-base font-bold">${product.price.toFixed(2)}</p>
   
           {/* Hover effects */}
-          <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+          <div className="absolute bottom-0 inset-x-0 bg-transparent p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
             <button
-              className="bg-blue-500 text-white p-2 rounded-full mx-1"
+              className="bg-[#68321bc8] text-white p-2 rounded-full mx-1"
               onClick={() => addToCart(product)} // Add to Cart
             >
               <FaCartPlus />
             </button>
-            <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+            <button onClick={() => handleModalOpen(product)} className="bg-[#68321bc8] text-white p-2 rounded-full mx-1">
               <FaEye />
             </button>
           </div>
@@ -344,7 +348,7 @@ const Accessories = () => {
     {/* Modal for product details */}
     {isModalOpen && selectedProduct && (
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-        <div className="bg-white p-4 rounded-lg w-full max-w-lg relative">
+        <div className="bg-[#ae7259e2] p-4 rounded-lg w-full max-w-lg relative">
           <button
             className="absolute top-2 right-2 text-xl font-bold"
             onClick={handleModalClose}
@@ -355,15 +359,15 @@ const Accessories = () => {
           <img
             src={selectedProduct.image}
             alt={selectedProduct.title}
-            className="w-72 h-48 md:h-64 object-cover mb-4"
+            className="w-20 h-32 sm:w-24 sm:h-36 md:w-28 md:h-48 lg:w-56 mx-24 lg:h-56 object-cover mb-4"
           />
-          <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
+          <p className="text-white mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
           <div className="flex flex-col sm:flex-row justify-between mb-5 items-center">
             <h3 className="text-lg font-semibold">${selectedProduct.price}</h3>
-            <h3 className="text-sm font-semibold text-yellow-600">{selectedProduct.rating}★★★★☆</h3>
+            <h3 className="text-sm font-semibold text-white">{selectedProduct.rating}★★★★☆</h3>
           </div>
           <button
-            className="bg-blue-500 text-white p-2 rounded-full mt-4 sm:mt-0"
+            className="bg-[#68321b8e] hover:bg-[#68321b] border hover:border-[#68321b8e] text-white p-2 rounded-full mt-4 sm:mt-0"
             onClick={() => addToCart(selectedProduct)}
           >
             Add to Cart

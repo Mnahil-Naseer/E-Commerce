@@ -218,7 +218,7 @@ const HomeAppliances = () => {
   };
   return (
     
-    <div className="p-4">
+    <div className="p-4 bg-gradient-to-b from-slate-500 via-slate-300 to-slate-100">
   {/* Main Banner Section */}
   <section className="relative h-screen mb-16 border-8 border-gray-800 flex flex-col md:flex-row items-center overflow-hidden">
     <div className="flex-1 flex justify-center items-center ">
@@ -312,14 +312,14 @@ const HomeAppliances = () => {
             <p className="text-base font-bold">${product.price.toFixed(2)}</p>
 
             {/* Hover effects */}
-            <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+            <div className="absolute bottom-0 inset-x-0 bg-transparent p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
               <button
-                className="bg-blue-500 text-white p-2 rounded-full mx-1"
+                className="bg-slate-500 text-white p-2 rounded-full mx-1"
                 onClick={() => addToCart(product)} // Add to Cart
               >
                 <FaCartPlus />
               </button>
-              <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+              <button onClick={() => handleModalOpen(product)} className="bg-slate-500 text-white p-2 rounded-full mx-1">
                 <FaEye />
               </button>
             </div>
@@ -347,14 +347,14 @@ const HomeAppliances = () => {
           <p className="text-base font-bold">${product.price.toFixed(2)}</p>
 
           {/* Hover effects */}
-          <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+          <div className="absolute bottom-0 inset-x-0 bg-transparent p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
             <button
-              className="bg-blue-500 text-white p-2 rounded-full mx-1"
+              className="bg-slate-500 text-white p-2 rounded-full mx-1"
               onClick={() => addToCart(product)} // Add to Cart
             >
               <FaCartPlus />
             </button>
-            <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
+            <button onClick={() => handleModalOpen(product)} className="bg-slate-500 text-white p-2 rounded-full mx-1">
               <FaEye />
             </button>
           </div>
@@ -368,22 +368,22 @@ const HomeAppliances = () => {
   {/* Modal for product details */}
   {isModalOpen && selectedProduct && (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4 backdrop-blur-md">
-      <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
+      <div className="bg-gradient-to-t from-slate-500 via-slate-300 to-slate-100 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
         <button
           onClick={handleModalClose}
-          className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
+          className="absolute top-4 right-4 text-xl text-red-300 hover:text-red-700 transition"
         >
           <span className="text-3xl">&times;</span>
         </button>
         <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4">{selectedProduct.title}</h2>
-        <img className="w-24 h-36 sm:h-48 md:h-56 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
+        <img className="w-20 h-32 sm:w-24 sm:h-36 md:w-28 md:h-48 lg:w-56 mx-24 lg:h-56 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
         <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
-        <div className="flex flex-col sm:flex-row justify-between items-center">
-          <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
+        <div className="flex flex-col sm:flex-row mb-5  justify-between items-center">
+          <h3 className="text-lg font-semibold ">${selectedProduct.price.toFixed(2)}</h3>
           <h3 className="text-sm font-semibold text-yellow-300">{selectedProduct.rating}★★★★☆</h3>
         </div>
         <button
-            className="bg-blue-500 text-white p-2 rounded-full mt-4 sm:mt-0"
+            className="bg-black hover:bg-gray-500 text-white p-2 rounded-full mt-4 sm:mt-0"
             onClick={() => addToCart(selectedProduct)}
           >
             Add to Cart

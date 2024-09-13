@@ -257,34 +257,34 @@ const Home = () => {
   const displayedNewArrivals = newproduct.slice(newProductIndex, newProductIndex + itemsToShow);
 
   return (
-    <div>
+    <div className='bg-[#f8dcd18e]'>
   <MainBanner />
   <section id="ShoppingBenefits" className="py-8">
     <div className="container px-4 sm:px-8 lg:px-16">
       <div className="flex flex-wrap md:flex-row gap-6 lg:gap-10 justify-between">
         <div className="flex flex-col lg:flex-row items-center w-full">
-          <div className="flex flex-col md:flex-row   w-full lg:w-auto">
-            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+          <div className="flex flex-col md:flex-row w-full lg:w-auto">
+            <div className="flex flex-col   items-center text-center p-4 w-full lg:w-1/5">
               <FaDollarSign className='text-3xl' />
               <h3 className="text-xs lg:text-sm font-bold">Value-for-money</h3>
               <p className="text-xs lg:text-sm text-gray-600">We offer competitive prices on millions of items</p>
             </div>
-            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+            <div className="flex flex-col  items-center text-center p-4 w-full lg:w-1/5">
               <FaUserGroup className='text-3xl' />
               <h3 className="text-xs lg:text-sm font-bold">Customers worldwide</h3>
               <p className="text-xs lg:text-sm text-gray-600">More than 300 million customers from 200+ countries & regions</p>
             </div>
-            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+            <div className="flex flex-col  items-center text-center p-4 w-full lg:w-1/5">
               <GrDeliver className='text-3xl' />
               <h3 className="text-xs lg:text-sm font-bold">Fast delivery</h3>
               <p className="text-xs lg:text-sm text-gray-600">Faster delivery on selected items thanks to our improved logistics</p>
             </div>
-            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+            <div className="flex flex-col  items-center text-center p-4 w-full lg:w-1/5">
               <FaWallet className='text-3xl' />
               <h3 className="text-xs lg:text-sm font-bold">Safe payments</h3>
               <p className="text-xs lg:text-sm text-gray-600">Safe payment methods preferred by international shoppers</p>
             </div>
-            <div className="flex flex-col items-center text-center p-4 w-full lg:w-1/5">
+            <div className="flex flex-col  items-center text-center p-4 w-full lg:w-1/5">
               <AiOutlineFileProtect className='text-3xl' />
               <h3 className="text-xs lg:text-sm font-bold">Buyer protection</h3>
               <p className="text-xs lg:text-sm text-gray-600">Get a refund if items arrive late or not as described</p>
@@ -348,7 +348,7 @@ const Home = () => {
             key={product.name}
             className="relative flex-none w-full sm:w-1/2 lg:w-1/4 px-4 group"
           >
-            <div className="bg-white p-4 rounded-lg shadow-lg transition relative overflow-hidden">
+            <div className="bg-[#f8dcd18e] backdrop-blur-md border-2 border-[#ffffffde] p-4 rounded-lg shadow-lg transition relative overflow-hidden">
               <div className="absolute top-4 animate-pulse left-4 bg-red-700 text-white text-sm font-bold px-2 py-1 rounded-full">
                 Sale
               </div>
@@ -366,13 +366,13 @@ const Home = () => {
                 <p className="text-lg font-bold mb-2">{product.price}</p>
                 <p className="text-sm line-through font-light mb-2">{product.price2}</p>
               </div>
-              <div className="absolute bg-white bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bg-transparent bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="flex justify-between">
-                  <button onClick={() => addToCart(product)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
-                    <FaCartPlus className='text-blue-500 text-3xl' />
+                  <button onClick={() => addToCart(product)} className="bg-[#987364] text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                    <FaCartPlus className='text-white text-xl' />
                   </button>
-                  <button onClick={() => handleModalOpen(product)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
-                    <FaEye className='text-green-500 text-3xl' />
+                  <button onClick={() => handleModalOpen(product)} className="bg-[#987364] text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                    <FaEye className='text-white text-xl' />
                   </button>
                 </div>
               </div>
@@ -420,7 +420,7 @@ const Home = () => {
         </a>
       </div>
     </section>
-  <section id="NewArrivals" className="px-4 sm:px-8 lg:px-16 mt-8 mb-16">
+  <section id="NewArrivals" className="px-4 sm:px-8 lg:px-16 mt-8 ">
     <h2 className="text-3xl font-extrabold font-serif mb-10 mt-16 text-left">New Arrivals</h2>
     <div className="relative overflow-hidden">
       <button
@@ -431,13 +431,13 @@ const Home = () => {
       >
         &lt;
       </button>
-      <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${newProductIndex * (100 / itemsToShow)}%)` }}>
+      <div className="flex mb-16 transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${newProductIndex * (100 / itemsToShow)}%)` }}>
         {displayedNewArrivals.map(newproduct => (
           <div
             key={newproduct.title}
             className="flex-none w-full sm:w-1/2 lg:w-1/4 px-4 group relative"
           >
-            <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition relative overflow-hidden">
+            <div className="bg-[#f8dcd18e] backdrop-blur-md border-2 border-[#ffffffde] p-4 rounded-lg shadow-lg hover:shadow-xl transition relative overflow-hidden">
               <div className="absolute top-4 animate-pulse left-4 bg-red-700 text-white text-sm font-bold px-2 py-1 rounded-full">
                 New
               </div>
@@ -446,16 +446,17 @@ const Home = () => {
                 alt={newproduct.title}
                 className="w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out group-hover:scale-110"
               />
-              <h3 className="text-lg font-bold mb-2">{newproduct.title}</h3>
-              <p className="text-lg font-bold mb-2">{newproduct.price}</p>
-              <p className="text-sm line-through font-light mb-2">{newproduct.oldPrice}</p>
-              <div className="absolute bg-white bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <h3 className="text-lg font-bold mb-2">{newproduct.title}</h3> 
+              <div className='flex justify-between'><p className="text-lg font-bold mb-2">${newproduct.price}</p>
+                <p className="text-sm font-bold mb-2">{newproduct.rating}⭐</p>
+               </div>
+              <div className="absolute bg-transparent bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="flex justify-between">
-                  <button onClick={() => addToCart(newproduct)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
-                    <FaCartPlus className='text-blue-500 text-3xl' />
+                  <button onClick={() => addToCart(newproduct)} className="bg-[#987364] text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                    <FaCartPlus className='text-white text-xl' />
                   </button>
-                  <button onClick={() => handleModalOpen(newproduct)} className="bg-white text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
-                    <FaEye className='text-green-500 text-3xl' />
+                  <button onClick={() => handleModalOpen(newproduct)} className="bg-[#987364] text-gray-700 p-2 rounded-full hover:bg-gray-200 transition">
+                    <FaEye className='text-white text-xl' />
                   </button>
                 </div>
               </div>
