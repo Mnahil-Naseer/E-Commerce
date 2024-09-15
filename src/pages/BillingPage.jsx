@@ -19,7 +19,7 @@ const BillingPage = () => {
   };
 
   return (
-    <div className="container bg-[#ffffff]  mx-auto p-4">
+    <div className="container  mx-auto p-4">
       <h1 className="text-3xl font-semibold mb-6">Billing Information</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div>

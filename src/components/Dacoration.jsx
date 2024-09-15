@@ -219,11 +219,11 @@ const Decoration = () => {
     setCurrentSlide(0);
   };
   return (
-    <div className="p-4 bg-gradient-to-b from-[#456565dc] via-[#727d7da9] to-[#5e4b08ba]">
+    <div className="p-4">
     {/* Main Banner Section */}
     <section className="relative h-screen mb-16 border-8 border-l-cyan-900 border-b-cyan-900 border-t-[#5e4b08] border-r-[#5e4b08] flex flex-col md:flex-row items-center overflow-hidden">
       <div className="flex-1 flex flex-col justify-center p-5 text-black">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl bg-gradient-to-r  from-[#294a4a] via-[#424e4ea9] to-[#5e4b08e8] text-transparent bg-clip-text font-extrabold font-serif mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-serif mb-4">
           Upgrade Your Space with Modern Home Appliances
         </h1>
         <p className="mt-3 text-base sm:text-lg md:text-xl text-gray-800 font-semibold mb-6">
@@ -232,7 +232,7 @@ const Decoration = () => {
         </p>
         <a
           href="#products"
-          className="px-4 py-2 sm:px-5 sm:py-3 border-2 border-[#5e4b08]  text-black font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-[#456565] hover:text-white transition duration-300"
+          className="px-4 py-2 sm:px-5 sm:py-3 border-2 border-black text-black font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
         >
           Discover More
         </a>
@@ -252,7 +252,7 @@ const Decoration = () => {
         <button
           key={category}
           onClick={() => handleCategoryChange(category)}
-          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === category ? 'bg-gradient-to-r from-[#366b6bdc] to-[#5e4b08] text-white' : 'bg-white text-black'} font-semibold m-1`}
+          className={`px-4 py-2 border-2 rounded-full ${selectedCategory === category ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold m-1`}
         >
           {category}
         </button>
@@ -265,7 +265,7 @@ const Decoration = () => {
     <div className="relative">
       <button
         onClick={handlePrevSlide}
-        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#456565fd] text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
         disabled={currentSlide === 0}
       >
         <FaChevronLeft />
@@ -273,7 +273,7 @@ const Decoration = () => {
   
       <button
         onClick={handleNextSlide}
-        className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#456565dc] text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
         disabled={currentSlide === topSelling.length - 5}
       >
         <FaChevronRight />
@@ -298,14 +298,14 @@ const Decoration = () => {
               <p className="text-base font-bold">${product.price.toFixed(2)}</p>
   
               {/* Hover effects */}
-              <div className="absolute bottom-0 inset-x-0 bg-transparent p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+              <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
                 <button
-                  className="bg-[#456565dc] text-white p-2 rounded-full mx-1"
+                  className="bg-blue-500 text-white p-2 rounded-full mx-1"
                   onClick={() => addToCart(product)} // Add to Cart
                 >
                   <FaCartPlus />
                 </button>
-                <button onClick={() => handleModalOpen(product)} className="bg-[#456565dc] text-white p-2 rounded-full mx-1">
+                <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
                   <FaEye />
                 </button>
               </div>
@@ -332,14 +332,14 @@ const Decoration = () => {
             <p className="text-base font-bold">${product.price.toFixed(2)}</p>
   
             {/* Hover effects */}
-            <div className="absolute bottom-0 inset-x-0 bg-transparent p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+            <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
               <button
-                className="bg-[#456565dc] text-white p-2 rounded-full mx-1"
+                className="bg-blue-500 text-white p-2 rounded-full mx-1"
                 onClick={() => addToCart(product)} // Add to Cart
               >
                 <FaCartPlus />
               </button>
-              <button onClick={() => handleModalOpen(product)} className="bg-[#456565dc] text-white p-2 rounded-full mx-1">
+              <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
                 <FaEye />
               </button>
             </div>
@@ -353,22 +353,22 @@ const Decoration = () => {
     {/* Modal for product details */}
     {isModalOpen && selectedProduct && (
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-        <div className="bg-gradient-to-b from-[#456565dc] via-[#727d7da9] to-[#5e4b08ba] p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
+        <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
           <button
             onClick={handleModalClose}
             className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
           >
             <span className="text-3xl">&times;</span>
           </button>
-          <h2 className="text-lg sm:text-xl font-semibold mb-4 text-white">{selectedProduct.title}</h2>
-          <img className="w-20 h-32 sm:w-24 sm:h-36 md:w-28 md:h-48 lg:w-56 mx-24 lg:h-56 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
-          <p className="text-gray-100 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
-          <div className="flex flex-col sm:flex-row mb-5 justify-between items-center">
-            <h3 className="text-lg font-semibold mb-3 text-white">${selectedProduct.price.toFixed(2)}</h3>
+          <h2 className="text-lg sm:text-xl font-semibold mb-4">{selectedProduct.title}</h2>
+          <img className="w-24 h-36 sm:w-32 sm:h-48 md:w-40 md:h-56 lg:w-48 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
+          <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
+          <div className="flex flex-col sm:flex-row justify-between items-center">
+            <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
             <h3 className="text-sm font-semibold text-yellow-300">{selectedProduct.rating}★★★★☆</h3>
           </div>
           <button
-            className="bg-gradient-to-r from-[#497878] via-[#727d7da9] to-[#5e4b08ba] hover:bg-gradient-to-l from-[#58a8a8] via-[#727d7def] to-[#5e4b08dc] text-white p-2 rounded-full mt-4 sm:mt-0"
+            className="bg-blue-500 text-white p-2 rounded-full mt-4 sm:mt-0"
             onClick={() => addToCart(selectedProduct)}
           >
             Add to Cart

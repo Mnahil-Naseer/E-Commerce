@@ -216,9 +216,9 @@ const Women = () => {
   };
 
   return (
-    <div className="p-4 bg-[#e4a68281]">
+    <div className="p-4">
   {/* Main Banner Section */}
-  <section className="relative h-screen mb-16 border-8 bg-[#d4a489] border-[#fab790] flex flex-col md:flex-row items-center overflow-hidden">
+  <section className="relative h-screen mb-16 border-8 border-[#fab790] flex flex-col md:flex-row items-center overflow-hidden">
     <div className="flex-1 flex justify-center items-center p-5">
       <img
         src={banner}
@@ -226,7 +226,7 @@ const Women = () => {
         className="w-[650px] md:h-[570px] h-full object-cover"
       />
     </div>
-    <div className="flex-1 flex flex-col justify-center p-5 text-[#4b2814]">
+    <div className="flex-1 flex flex-col justify-center p-5 text-black">
       <h1 className="text-3xl md:text-5xl font-extrabold font-serif mb-4">
         Discover the Latest in Women's Fashion
       </h1>
@@ -236,7 +236,7 @@ const Women = () => {
       </p>
       <a
         href="#products"
-        className="px-4 py-2 border-2 border-[#fab790] text-black font-semibold text-base rounded-lg shadow-md hover:bg-[#faa573] hover:text-white transition duration-300"
+        className="px-4 py-2 border-2 border-black text-black font-semibold text-base rounded-lg shadow-md hover:bg-gray-800 hover:text-white transition duration-300"
       >
         Shop the Collection
       </a>
@@ -244,22 +244,22 @@ const Women = () => {
   </section>
 
   {/* Category Buttons */}
-  <div id="products" className="mb-6 flex  flex-wrap justify-center gap-4">
+  <div id="products" className="mb-6 flex flex-wrap justify-center gap-4">
     <button
       onClick={() => handleCategoryChange('All')}
-      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-[#e4a682a4] text-white' : 'bg-white text-black'} font-semibold`}
+      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'All' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
     >
       All
     </button>
     <button
       onClick={() => handleCategoryChange('Formal')}
-      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Formal' ? 'bg-[#e4a682a4] text-white' : 'bg-white text-black'} font-semibold`}
+      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Formal' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
     >
       Formal
     </button>
     <button
       onClick={() => handleCategoryChange('Casual')}
-      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Casual' ? 'bg-[#e4a682a4] text-white' : 'bg-white text-black'} font-semibold`}
+      className={`px-4 py-2 border-2 rounded-full ${selectedCategory === 'Casual' ? 'bg-gray-800 text-white' : 'bg-white text-black'} font-semibold`}
     >
       Casual
     </button>
@@ -271,7 +271,7 @@ const Women = () => {
   <div className="relative mb-16">
     <button
       onClick={handlePrevSlide}
-      className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#e4a682a4] text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
       disabled={currentSlide === 0}
     >
       <FaChevronLeft />
@@ -279,7 +279,7 @@ const Women = () => {
 
     <button
       onClick={handleNextSlide}
-      className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#e4a682a4] text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10 ${currentSlide === topSelling.length - 5 ? 'opacity-50 cursor-not-allowed' : ''}`}
       disabled={currentSlide === topSelling.length - 5}
     >
       <FaChevronRight />
@@ -304,14 +304,14 @@ const Women = () => {
             <p className="text-base font-bold">${product.price.toFixed(2)}</p>
 
             {/* Hover effects */}
-            <div className="absolute bottom-0 inset-x-0 bg-transparent p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
+            <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
               <button
-                className="bg-[#e4a682a4] text-white p-2 rounded-full mx-1"
+                className="bg-blue-500 text-white p-2 rounded-full mx-1"
                 onClick={() => addToCart(product)}
               >
                 <FaCartPlus />
               </button>
-              <button onClick={() => handleModalOpen(product)} className="bg-[#e4a682a4] text-white p-2 rounded-full mx-1">
+              <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
                 <FaEye />
               </button>
             </div>
@@ -341,12 +341,12 @@ const Women = () => {
           {/* Hover effects */}
           <div className="absolute bottom-0 inset-x-0 bg-white p-2 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0 flex justify-between items-center">
             <button
-              className="bg-[#e4a682e9] text-white p-2 rounded-full mx-1"
+              className="bg-blue-500 text-white p-2 rounded-full mx-1"
               onClick={() => addToCart(product)}
             >
               <FaCartPlus />
             </button>
-            <button onClick={() => handleModalOpen(product)} className="bg-[#e4a682e9] text-white p-2 rounded-full mx-1">
+            <button onClick={() => handleModalOpen(product)} className="bg-green-500 text-white p-2 rounded-full mx-1">
               <FaEye />
             </button>
           </div>
@@ -360,22 +360,22 @@ const Women = () => {
   {/* Modal for product details */}
   {isModalOpen && selectedProduct && (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 p-4 backdrop-blur-md">
-      <div className="bg-[#e4a682a4] p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
+      <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full relative">
         <button
           onClick={handleModalClose}
-          className="absolute top-4 right-4 text-xl text-red-300 hover:text-red-700 transition"
+          className="absolute top-4 right-4 text-lg text-red-300 hover:text-red-700 transition"
         >
           <span className="text-3xl">&times;</span>
         </button>
         <h2 className="text-xl sm:text-2xl font-semibold mb-4">{selectedProduct.title}</h2>
-        <img className="w-20 h-32 sm:w-24 sm:h-36 md:w-28 md:h-48 lg:w-56 mx-24 lg:h-56 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
-        <p className="text-gray-900 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
-        <div className="flex flex-col sm:flex-row justify-between mb-5 items-center">
+        <img className="w-full h-36 sm:h-48 md:h-56 lg:h-64 object-cover mb-4" src={selectedProduct.image} alt={selectedProduct.title} />
+        <p className="text-gray-700 mb-4 text-sm sm:text-base">{selectedProduct.description}</p>
+        <div className="flex flex-col sm:flex-row justify-between items-center">
           <h3 className="text-lg font-semibold">${selectedProduct.price.toFixed(2)}</h3>
           <h3 className="text-sm font-semibold text-yellow-600">{selectedProduct.rating}★★★★☆</h3>
         </div>
         <button
-            className="bg-[#e4a682a4] hover:bg-[#e4a682] border-2 hover:border-[#eba176] text-white p-2 rounded-full mt-4 sm:mt-0"
+            className="bg-blue-500 text-white p-2 rounded-full mt-4 sm:mt-0"
             onClick={() => addToCart(selectedProduct)}
           >
             Add to Cart
